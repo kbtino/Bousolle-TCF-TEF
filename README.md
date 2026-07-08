@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boussole
 
-## Getting Started
+Plateforme de préparation aux examens **TCF Canada** et **TEF Canada** (immigration économique). Diagnostic de niveau, entraînement par compétence, correction IA de l'écrit et de l'oral, suivi de la progression vers le seuil NCLC visé.
 
-First, run the development server:
+## État du projet
+
+**V1 — front-end complet, services mockés.** Le parcours critique (inscription → onboarding → diagnostic → dashboard → bibliothèque d'exercices → correction IA écrit/oral → paywall → paiement) est entièrement navigable avec des données réalistes mais simulées. Aucun backend réel n'est branché : pas d'authentification, pas de base de données, pas de paiement ni de correction IA réels.
+
+Chaque service mocké vit dans `src/lib/services/` derrière une fonction async avec une signature déjà prête pour une vraie API (Supabase, Stripe, LanguageTool, Whisper/Deepgram) :
+
+| Fichier | Rôle réel à brancher plus tard |
+|---|---|
+| `auth-service.ts` | Authentification (Supabase Auth) |
+| `diagnostic-service.ts` | Estimation du score CECRL/NCLC |
+| `writing-service.ts` | Correction grammaticale (LanguageTool) |
+| `speaking-service.ts` | Transcription + analyse orale (Whisper/Deepgram) |
+| `payment-service.ts` | Paiement (Stripe pour carte, CinetPay/Flutterwave pour mobile money) |
+
+La seule brique réellement fonctionnelle est l'enregistrement audio (`src/hooks/useMediaRecorder.ts`, vraie API navigateur `MediaRecorder`).
+
+## Stack
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4 (tokens CSS-first, voir `src/styles/tokens/`), icônes [`@tabler/icons-react`](https://tabler.io/icons).
+
+## Démarrer
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/            routes App Router (une page par écran)
+  components/     primitives UI réutilisables (ui/, qcm/, audio/, nclc/, navigation/, layout/)
+  hooks/          logique réutilisable (timer, lecteur audio, enregistreur micro)
+  state/          contexte React (onboarding, progression utilisateur) — pas de backend en V1
+  lib/
+    types/        types de domaine
+    data/         données statiques typées (questions, tarifs, barèmes NCLC)
+    services/     couche mock → API réelle plus tard
+    scoring.ts     conversions/scoring pures
+```
 
-## Learn More
+Design de référence dans `pr-paration-examen-tcf-tef/` (export Claude Design) — prototype HTML/JS et système de tokens, à consulter mais pas à modifier.
 
-To learn more about Next.js, take a look at the following resources:
+## Roadmap (après cette V1)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Authentification et base de données réelles (Supabase)
+2. Paiement réel (Stripe + un processeur mobile money local)
+3. Correction IA réelle (LanguageTool, Whisper/Deepgram)
+4. Contenu complet (30 questions de diagnostic, catalogue d'exercices étendu, simulations complètes TCF/TEF)
