@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/effects.css";
+@import "../styles/tokens/typography.css";
+
+/* Tailwind v4 only generates utilities for variables declared under its
+   recognized namespaces (--color-*, --spacing-*, --radius-*, --shadow-*,
+   --font-*, --text-*, --tracking-*). The imports above define our own
+   token names (--green-700, --space-md, --r-md, --fs-h1…); this block
+   re-exposes the ones components actually use under Tailwind's namespaces. */
+@theme inline {
+  /* colors */
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--green-800);
+  --color-primary-strong: var(--color-primary-strong);
+  --color-primary-muted: var(--color-primary-muted);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-border-faint: var(--color-border-faint);
+  --color-accent: var(--color-accent);
+  --color-threshold: var(--color-threshold);
+  --color-green-050: var(--green-050);
+  --color-green-100: var(--green-100);
+  --color-green-500: var(--green-500);
+  --color-ink-900: var(--ink-900);
+  --color-ink-600: var(--ink-600);
+  --color-ink-400: var(--ink-400);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-error: var(--error);
+  --color-error-bg: var(--error-bg);
+  --color-danger: var(--danger);
+
+  /* spacing */
+  --spacing-2xs: var(--space-2xs);
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+
+  /* radius */
+  --radius-xs: var(--r-xs);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --radius-full: var(--r-full);
+
+  /* shadows */
+  --shadow-card: var(--shadow-card);
+  --shadow-primary: var(--shadow-primary);
+
+  /* fonts — sans is the native system stack, mono is JetBrains Mono
+     loaded in layout.tsx and exposed as --font-jetbrains-mono */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", "Courier New", monospace;
+
+  /* type scale */
+  --text-display: var(--fs-display);
+  --text-h1: var(--fs-h1);
+  --text-h2: var(--fs-h2);
+  --text-h3: var(--fs-h3);
+  --text-body: var(--fs-body);
+  --text-caption: var(--fs-sm);
+  --text-eyebrow: var(--fs-2xs);
+  --text-mono-lg: var(--fs-mono-lg);
+
+  /* line-height overrides to match the design's compact rhythm */
+  --leading-tight: var(--lh-tight);
+  --leading-snug: var(--lh-snug);
+  --leading-normal: var(--lh-normal);
+
+  /* letter-spacing */
+  --tracking-eyebrow: var(--ls-eyebrow);
+  --tracking-heading: var(--ls-heading);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink-900);
+}

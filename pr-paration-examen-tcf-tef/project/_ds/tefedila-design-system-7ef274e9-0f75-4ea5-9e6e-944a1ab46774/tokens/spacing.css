@@ -1,0 +1,21 @@
+/* ============================================================
+   Tefedila — Spacing & radius tokens
+   ============================================================ */
+:root {
+  /* Spacing scale (from theme.space) */
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+  /* Radii (from theme.radii, extended) */
+  --r-xs:  4px;   /* pills, small chips */
+  --r-sm:  6px;   /* inputs, buttons (small) */
+  --r-md:  10px;  /* cards, inputs, buttons */
+  --r-lg:  14px;  /* hero address card */
+  --r-xl:  16px;  /* large surfaces */
+  --r-full: 999px;
+}

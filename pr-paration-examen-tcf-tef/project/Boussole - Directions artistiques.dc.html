@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/colors.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/typography.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/effects.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/styles.css">
+<script src="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+<style>
+body{margin:0;background:#f0eee9;font-family:var(--font-sans,system-ui,sans-serif)}
+a{color:#0F6E56}a:hover{color:#0a4f3d}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-tsub{font:400 11.5px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:820px;margin:0 0 22px}
+.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:360px}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.dv-spec{display:flex;align-items:center;gap:10px;font:400 10.5px/1.4 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:360px}
+.dv-chip{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.1);flex:none}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">BoussoleTCF-TEF — 3 directions artistiques (dashboard mobile, TCF Canada)</span></div>
+<p class="dv-tsub">Toutes bâties sur les fondations Tefedila : vert forêt #0F6E56, fond #f5f7f5, hairlines 0.5px, scores en monospace, gamification discrète. Ce qui varie : le traitement du score (l'arbitrage /699 vs NCLC), la hiérarchie, et la dose d'expressivité. Persona : Awa, vise NCLC 7, examen dans 42 jours, niveau estimé NCLC 6.</p>
+<div class="dv-opts">
+
+<!-- ================= 1a — Civique sobre ================= -->
+<div class="dv-opt" id="1a">
+  <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><span><strong>Civique sobre</strong> — Tefedila au pied de la lettre. Carte héro verte = NCLC d'abord (le chiffre qui compte pour IRCC), score /699 en second. Barre de progression vers le seuil 7. Gamification en pied de carte, quasi administrative.</span></div>
+  <div class="dv-card" style="width:360px;background:#f5f7f5">
+    <div style="display:flex;flex-direction:column;gap:12px;padding:16px;min-height:640px">
+      <!-- header -->
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#0F6E56,#0a4f3d);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;box-shadow:0 2px 5px rgba(15,110,86,.3)"><i class="ti ti-compass"></i></div>
+        <div style="display:flex;flex-direction:column;gap:1px">
+          <div style="font-weight:700;font-size:15px;color:#1a1a1a;letter-spacing:-.2px">Boussole</div>
+          <div style="font-size:10.5px;color:#6b7280;white-space:nowrap">Bonjour, Awa</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:6px;background:#fff;border:.5px solid #e8e9e8;border-radius:6px;padding:5px 9px">
+          <i class="ti ti-calendar-event" style="color:#0F6E56;font-size:13px"></i>
+          <span style="font-family:var(--font-mono);font-size:11.5px;font-weight:600;color:#1a1a1a">J−42</span>
+        </div>
+      </div>
+      <!-- hero -->
+      <div style="background:linear-gradient(135deg,#0F6E56 0%,#0c5c48 60%,#0a4f3d 100%);border-radius:14px;padding:18px 16px 14px;box-shadow:0 3px 8px rgba(15,110,86,.3);background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(135deg,#0F6E56 0%,#0c5c48 60%,#0a4f3d 100%);background-size:12px 12px,100% 100%">
+        <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#7fd4bc;font-weight:600">Niveau estimé · TCF Canada</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px">
+          <div style="font-family:var(--font-mono);font-size:34px;font-weight:700;color:#fff;letter-spacing:-.5px">NCLC 6</div>
+          <div style="font-family:var(--font-mono);font-size:13px;color:rgba(255,255,255,.75)">B1+ · 302<span style="color:rgba(255,255,255,.45)">/699</span></div>
+        </div>
+        <div style="margin-top:12px">
+          <div style="position:relative;height:6px;border-radius:3px;background:rgba(255,255,255,.18)">
+            <div style="position:absolute;inset:0 auto 0 0;width:62%;border-radius:3px;background:#7fd4bc"></div>
+            <div style="position:absolute;top:-3px;left:78%;width:2px;height:12px;background:#FFCD00;border-radius:1px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:rgba(255,255,255,.75)">
+            <span style="white-space:nowrap">Objectif : <strong style="color:#fff">NCLC 7</strong></span>
+            <span style="font-family:var(--font-mono)">encore ~29 pts</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:14px;padding-top:11px;border-top:.5px solid rgba(255,255,255,.16)">
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.85)"><i class="ti ti-flame" style="color:#f4a460"></i>6 jours de suite</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.85)"><i class="ti ti-target-arrow"></i>Diagnostic du 12 juin</div>
+        </div>
+      </div>
+      <!-- next action -->
+      <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:14px 14px 12px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+        <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Prochaine action recommandée</div>
+        <div style="display:flex;align-items:center;gap:11px;margin-top:10px">
+          <div style="width:38px;height:38px;border-radius:9px;background:#eef7f3;border:.5px solid #d7efe6;display:flex;align-items:center;justify-content:center;color:#0F6E56;font-size:18px"><i class="ti ti-headphones"></i></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+            <div style="font-size:13.5px;font-weight:600;color:#1a1a1a">Compréhension de l'oral — série 4</div>
+            <div style="font-size:11px;color:#6b7280">10 questions · ~12 min · votre point faible</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;background:#0F6E56;color:#fff;border-radius:8px;height:44px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48">Commencer <i class="ti ti-arrow-right" style="font-size:15px"></i></div>
+      </div>
+      <!-- compétences -->
+      <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:4px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+        <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600;padding:10px 0 4px">Progression par épreuve</div>
+        <sc-for list="{{ skills1 }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-top:.5px solid #f0f1f0">
+            <i class="ti {{ s.icon }}" style="color:#6b7280;font-size:16px;width:18px"></i>
+            <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;justify-content:space-between;font-size:12px">
+                <span style="color:#1a1a1a;font-weight:500">{{ s.name }}</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:{{ s.color }}">{{ s.score }}</span>
+              </div>
+              <div style="position:relative;height:4px;border-radius:2px;background:#f0f1f0">
+                <div style="position:absolute;inset:0 auto 0 0;border-radius:2px;background:{{ s.color }};width:{{ s.pct }}"></div>
+                <div style="position:absolute;top:-2px;left:{{ s.seuil }};width:1.5px;height:8px;background:#9ca3af"></div>
+              </div>
+            </div>
+            <i class="ti ti-chevron-right" style="color:#9ca3af;font-size:14px"></i>
+          </div>
+        </sc-for>
+      </div>
+      <div style="text-align:center;font-size:10px;color:#9ca3af;padding:2px 0 4px">Repère gris = seuil IRCC NCLC 7</div>
+    </div>
+  </div>
+  <div class="dv-spec"><span class="dv-chip" style="background:#0F6E56"></span><span class="dv-chip" style="background:#f5f7f5"></span><span class="dv-chip" style="background:#7fd4bc"></span><span class="dv-chip" style="background:#FFCD00"></span><span>Système sans + JetBrains Mono · NCLC-first, /699 secondaire · repère seuil = tick jaune/gris</span></div>
+</div>
+
+<!-- ================= 1b — Cap (boussole) ================= -->
+<div class="dv-opt" id="1b">
+  <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><span><strong>Cap</strong> — la métaphore boussole assumée : jauge circulaire graduée en NCLC, aiguille sur le niveau actuel, cap marqué à 7. Header sombre immersif, gamification « cap maintenu ». Plus émotionnel, reste sobre.</span></div>
+  <div class="dv-card" style="width:360px;background:#f5f7f5">
+    <div style="display:flex;flex-direction:column;min-height:640px">
+      <!-- dark header w/ gauge -->
+      <div style="background:linear-gradient(160deg,#0a4f3d 0%,#0F6E56 100%);padding:16px 16px 22px;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(160deg,#0a4f3d 0%,#0F6E56 100%);background-size:12px 12px,100% 100%">
+        <div style="display:flex;align-items:center;gap:9px">
+          <div style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px"><i class="ti ti-compass"></i></div>
+          <div style="font-weight:700;font-size:14px;color:#fff;letter-spacing:-.2px">Boussole</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.28);border-radius:20px;padding:4px 10px;font-size:10.5px;color:#fff"><span style="width:6px;height:6px;border-radius:50%;background:#FFCD00"></span>Examen le 19 août · J−42</div>
+        </div>
+        <!-- gauge -->
+        <div style="display:flex;justify-content:center;margin-top:14px">{{ gauge }}</div>
+        <div style="text-align:center;margin-top:2px">
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#7fd4bc;font-weight:600">Votre cap · TCF Canada</div>
+          <div style="font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,.8);margin-top:4px">302/699 · B1+ · <span style="color:#FFCD00">cap sur NCLC 7</span></div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:14px;margin-top:12px">
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.85)"><i class="ti ti-flame" style="color:#f4a460"></i>Cap maintenu 6 jours</div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.85)"><i class="ti ti-trending-up" style="color:#7fd4bc"></i>+18 pts ce mois</div>
+        </div>
+      </div>
+      <!-- body -->
+      <div style="display:flex;flex-direction:column;gap:12px;padding:14px 16px 16px;margin-top:-10px">
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:12px;padding:14px;box-shadow:0 2px 6px rgba(0,0,0,.07)">
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:38px;height:38px;border-radius:9px;background:#eef7f3;border:.5px solid #d7efe6;display:flex;align-items:center;justify-content:center;color:#0F6E56;font-size:18px"><i class="ti ti-headphones"></i></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+              <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Étape du jour</div>
+              <div style="font-size:13.5px;font-weight:600;color:#1a1a1a">Oral — série 4 · 12 min</div>
+            </div>
+            <div style="background:#0F6E56;color:#fff;border-radius:8px;height:40px;padding:0 16px;display:flex;align-items:center;font-size:13px;font-weight:600;cursor:pointer">Partir</div>
+          </div>
+        </div>
+        <!-- skill compass points -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <sc-for list="{{ skills2 }}" as="s" hint-placeholder-count="4">
+            <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+              <div style="display:flex;align-items:center;gap:7px">
+                <i class="ti {{ s.icon }}" style="color:#0F6E56;font-size:15px"></i>
+                <span style="font-size:11px;color:#6b7280;font-weight:500">{{ s.name }}</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:5px">
+                <span style="font-family:var(--font-mono);font-size:19px;font-weight:700;color:#1a1a1a">{{ s.nclc }}</span>
+                <span style="font-size:10px;color:{{ s.color }};font-weight:600">{{ s.delta }}</span>
+              </div>
+              <div style="position:relative;height:4px;border-radius:2px;background:#f0f1f0">
+                <div style="position:absolute;inset:0 auto 0 0;border-radius:2px;background:#0F9B80;width:{{ s.pct }}"></div>
+                <div style="position:absolute;top:-2px;left:{{ s.seuil }};width:1.5px;height:8px;background:#FFCD00"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <i class="ti ti-route" style="color:#0F6E56;font-size:17px"></i>
+          <div style="flex:1;font-size:12px;color:#1a1a1a">Plan 60 jours — <strong>étape 12/60</strong> franchie</div>
+          <i class="ti ti-chevron-right" style="color:#9ca3af;font-size:14px"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dv-spec"><span class="dv-chip" style="background:#0a4f3d"></span><span class="dv-chip" style="background:#0F9B80"></span><span class="dv-chip" style="background:#FFCD00"></span><span class="dv-chip" style="background:#f4a460"></span><span>Jauge NCLC graduée (le /699 devient secondaire) · jaune Togo = cible · copy « cap / partir »</span></div>
+</div>
+
+<!-- ================= 1c — Registre ================= -->
+<div class="dv-opt" id="1c">
+  <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><span><strong>Registre</strong> — data-first, façon relevé officiel : tableau d'épreuves avec scores mono vs seuils IRCC exacts (302/331…), sparkline de tendance, streak en pastilles calendaires. Le plus dense et le plus « dossier IRCC ».</span></div>
+  <div class="dv-card" style="width:360px;background:#f5f7f5">
+    <div style="display:flex;flex-direction:column;gap:12px;padding:16px;min-height:640px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#0F6E56,#0a4f3d);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px"><i class="ti ti-compass"></i></div>
+        <div style="font-weight:700;font-size:15px;color:#1a1a1a;letter-spacing:-.2px">Boussole</div>
+        <div style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:#6b7280">TCF · 19 août · <strong style="color:#0F6E56">J−42</strong></div>
+      </div>
+      <!-- dossier card -->
+      <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.07)">
+        <div style="padding:14px 14px 12px;background:linear-gradient(135deg,#0F6E56,#0a4f3d)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#7fd4bc;font-weight:600">Relevé de progression</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.65)">màj il y a 2 h</div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:9px;margin-top:5px">
+            <span style="font-family:var(--font-mono);font-size:27px;font-weight:700;color:#fff">NCLC 6</span>
+            <span style="font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,.75)">302/699 · B1+</span>
+            <span style="margin-left:auto;font-size:10.5px;background:rgba(255,205,0,.18);color:#FFCD00;border-radius:4px;padding:3px 7px;font-weight:600;white-space:nowrap;flex:none">objectif 7</span>
+          </div>
+        </div>
+        <div style="background:#f5f7f5">
+          <div style="display:grid;grid-template-columns:1fr 62px 52px 34px;gap:8px;padding:9px 14px 5px;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;color:#9ca3af;font-weight:600">
+            <span>Épreuve</span><span style="text-align:right">Score</span><span style="text-align:right">Seuil 7</span><span></span>
+          </div>
+          <sc-for list="{{ skills3 }}" as="s" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:1fr 62px 52px 34px;gap:8px;align-items:center;padding:9px 14px;border-top:.5px solid #e8e9e8">
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#1a1a1a;font-weight:500"><i class="ti {{ s.icon }}" style="color:#6b7280;font-size:14px"></i>{{ s.name }}</div>
+              <div style="text-align:right;font-family:var(--font-mono);font-size:12px;color:#1a1a1a;font-weight:600">{{ s.score }}</div>
+              <div style="text-align:right;font-family:var(--font-mono);font-size:11px;color:#9ca3af">{{ s.seuil }}</div>
+              <div style="display:flex;justify-content:flex-end"><span style="width:8px;height:8px;border-radius:50%;background:{{ s.dot }}"></span></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:.5px solid #e8e9e8;background:#fff">
+          {{ sparkline }}
+          <div style="font-size:11px;color:#6b7280">Tendance 30 j · <strong style="color:#0F6E56">+18 pts</strong></div>
+        </div>
+      </div>
+      <!-- streak calendar -->
+      <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Assiduité — 6 jours</div>
+          <div style="font-size:10.5px;color:#9ca3af;white-space:nowrap;flex:none">cette semaine</div>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:9px">
+          <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="width:26px;height:26px;border-radius:7px;background:{{ d.bg }};border:.5px solid {{ d.bd }};display:flex;align-items:center;justify-content:center;color:{{ d.fg }};font-size:12px"><i class="ti {{ d.icon }}"></i></div>
+              <span style="font-size:9px;color:#9ca3af">{{ d.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <!-- next -->
+      <div style="background:#0F6E56;border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:11px;box-shadow:0 3px 8px rgba(15,110,86,.3);cursor:pointer">
+        <i class="ti ti-headphones" style="color:#fff;font-size:18px"></i>
+        <div style="flex:1;display:flex;flex-direction:column;gap:1px">
+          <div style="font-size:13px;font-weight:600;color:#fff">Continuer : Oral — série 4</div>
+          <div style="font-size:10.5px;color:rgba(255,255,255,.75)">10 questions · 12 min · point faible prioritaire</div>
+        </div>
+        <i class="ti ti-arrow-right" style="color:#fff;font-size:16px"></i>
+      </div>
+    </div>
+  </div>
+  <div class="dv-spec"><span class="dv-chip" style="background:#0F6E56"></span><span class="dv-chip" style="background:#fff"></span><span class="dv-chip" style="background:#e8e9e8"></span><span class="dv-chip" style="background:#22c55e"></span><span>Scores exacts vs seuils officiels, table-in-card Tefedila · le plus crédible « dossier », le moins chaleureux</span></div>
+</div>
+
+</div>
+<p class="dv-next">Essayez : « garde <a class="dv-oid" href="#1a">1a</a> mais avec la jauge de <a class="dv-oid" href="#1b">1b</a> » · « montre <a class="dv-oid" href="#1c">1c</a> en desktop » · « pars sur <a class="dv-oid" href="#1b">1b</a> pour le prototype »</p>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const skills1 = [
+      { icon: 'ti-headphones', name: "Compréhension de l'oral", score: '310/699', pct: '54%', seuil: '72%', color: '#f59e0b' },
+      { icon: 'ti-book', name: "Compréhension de l'écrit", score: '400/699', pct: '66%', seuil: '74%', color: '#0F9B80' },
+      { icon: 'ti-pencil', name: 'Expression écrite', score: '15/24', pct: '62%', seuil: '58%', color: '#0F9B80' },
+      { icon: 'ti-microphone', name: 'Expression orale', score: '296/699', pct: '58%', seuil: '68%', color: '#f59e0b' },
+    ];
+    const skills2 = [
+      { icon: 'ti-headphones', name: 'Oral', nclc: 'NCLC 5', delta: '+1 à faire', color: '#f59e0b', pct: '54%', seuil: '72%' },
+      { icon: 'ti-book', name: 'Écrit', nclc: 'NCLC 6', delta: 'en bonne voie', color: '#0F9B80', pct: '66%', seuil: '74%' },
+      { icon: 'ti-pencil', name: 'Expr. écrite', nclc: 'NCLC 7', delta: 'cap atteint', color: '#0F9B80', pct: '70%', seuil: '58%' },
+      { icon: 'ti-microphone', name: 'Expr. orale', nclc: 'NCLC 6', delta: '+1 à faire', color: '#f59e0b', pct: '58%', seuil: '68%' },
+    ];
+    const skills3 = [
+      { icon: 'ti-headphones', name: "Compr. oral", score: '289', seuil: '331', dot: '#f59e0b' },
+      { icon: 'ti-book', name: "Compr. écrit", score: '318', seuil: '342', dot: '#f59e0b' },
+      { icon: 'ti-pencil', name: 'Expr. écrite', score: '15/24', seuil: '14/24', dot: '#22c55e' },
+      { icon: 'ti-microphone', name: 'Expr. orale', score: '296', seuil: '310', dot: '#f59e0b' },
+    ];
+    const week = ['L','M','M','J','V','S','D'].map((label, i) => {
+      const done = i < 6;
+      return {
+        label,
+        icon: done ? 'ti-check' : 'ti-point',
+        bg: done ? '#d7efe6' : '#f5f7f5',
+        bd: done ? '#7fd4bc' : '#e8e9e8',
+        fg: done ? '#0F6E56' : '#9ca3af',
+      };
+    });
+
+    return { skills1, skills2, skills3, week, gauge: this.renderGauge(), sparkline: this.renderSparkline() };
+  }
+
+  renderGauge() {
+    // semicircular NCLC gauge: levels 4..10, needle at 6, target at 7
+    const cx = 110, cy = 100, r = 82;
+    const lvlAngle = (lvl) => Math.PI * (1 - (lvl - 4) / 6); // 4 -> PI (left), 10 -> 0 (right)
+    const pt = (a, rad) => [cx + rad * Math.cos(a), cy - rad * Math.sin(a)];
+    const e = React.createElement;
+    const ticks = [];
+    for (let lvl = 4; lvl <= 10; lvl++) {
+      const a = lvlAngle(lvl);
+      const [x1, y1] = pt(a, r - 6), [x2, y2] = pt(a, r + 2);
+      const isTarget = lvl === 7;
+      ticks.push(e('line', { key: 't' + lvl, x1, y1, x2, y2, stroke: isTarget ? '#FFCD00' : 'rgba(255,255,255,.45)', strokeWidth: isTarget ? 3 : 1.5, strokeLinecap: 'round' }));
+      const [lx, ly] = pt(a, r + 13);
+      ticks.push(e('text', { key: 'l' + lvl, x: lx, y: ly + 3, textAnchor: 'middle', fontSize: 9.5, fontFamily: 'JetBrains Mono, monospace', fill: isTarget ? '#FFCD00' : 'rgba(255,255,255,.6)', fontWeight: isTarget ? 700 : 400 }, String(lvl)));
+    }
+    // arc from 4 to current (6)
+    const arc = (from, to, color, w) => {
+      const a1 = lvlAngle(from), a2 = lvlAngle(to);
+      const [x1, y1] = pt(a1, r - 2), [x2, y2] = pt(a2, r - 2);
+      return e('path', { d: `M ${x1} ${y1} A ${r - 2} ${r - 2} 0 0 1 ${x2} ${y2}`, fill: 'none', stroke: color, strokeWidth: w, strokeLinecap: 'round' });
+    };
+    const na = lvlAngle(6);
+    const [nx, ny] = pt(na, r - 16);
+    return e('svg', { width: 220, height: 118, viewBox: '0 0 220 118' },
+      arc(4, 10, 'rgba(255,255,255,.15)', 5),
+      arc(4, 6, '#7fd4bc', 5),
+      ticks,
+      e('line', { x1: cx, y1: cy, x2: nx, y2: ny, stroke: '#fff', strokeWidth: 2.5, strokeLinecap: 'round' }),
+      e('circle', { cx, cy, r: 5, fill: '#fff' }),
+      e('text', { x: cx, y: cy - 26, textAnchor: 'middle', fontSize: 26, fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', fill: '#fff' }, 'NCLC 6')
+    );
+  }
+
+  renderSparkline() {
+    const e = React.createElement;
+    const ys = [30, 28, 29, 25, 24, 21, 20, 16, 14, 12];
+    const d = ys.map((y, i) => `${i === 0 ? 'M' : 'L'} ${4 + i * 8} ${y}`).join(' ');
+    return e('svg', { width: 80, height: 34, viewBox: '0 0 80 34', style: { flex: 'none' } },
+      e('path', { d, fill: 'none', stroke: '#0F9B80', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }),
+      e('circle', { cx: 76, cy: 12, r: 3, fill: '#0F6E56' })
+    );
+  }
+}
+</script>
+</body>
+</html>

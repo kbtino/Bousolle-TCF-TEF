@@ -1,0 +1,328 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/display/**",
+              "components/feedback/**",
+              "components/forms/**",
+              "components/layout/**",
+              "decks/**",
+              "ui_kits/dashboard/**",
+              "ui_kits/web_app/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:JetBrains Mono))/i]",
+        "message": "Font not provided by the design system. Available: JetBrains Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AddressCardAction'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|label|onClick|key|ref|className|style|children)$/]",
+        "message": "<AddressCardAction> doesn't accept that prop. Declared props: icon, label, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AdminRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:k|v|key|ref|className|style|children)$/]",
+        "message": "<AdminRow> doesn't accept that prop. Declared props: k, v."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|dot|mono|style|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, tone, dot, mono, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Breadcrumbs'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|style|key|ref|className|style|children)$/]",
+        "message": "<Breadcrumbs> doesn't accept that prop. Declared props: items, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|icon|iconRight|fullWidth|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, icon, iconRight, fullWidth, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|sunken|pad|header|style|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: children, sunken, pad, header, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='FormatRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|label|value|last|style|key|ref|className|style|children)$/]",
+        "message": "<FormatRow> doesn't accept that prop. Declared props: icon, label, value, last, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ModeToggleOption'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|icon|key|ref|className|style|children)$/]",
+        "message": "<ModeToggleOption> doesn't accept that prop. Declared props: value, label, icon."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SearchInput'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|placeholder|hint|mono|onClear|onSubmit|style|key|ref|className|style|children)$/]",
+        "message": "<SearchInput> doesn't accept that prop. Declared props: value, onChange, placeholder, hint, mono, onClear, onSubmit, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Stat'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|sub|style|key|ref|className|style|children)$/]",
+        "message": "<Stat> doesn't accept that prop. Declared props: label, value, sub, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatusDot'] > JSXAttribute > JSXIdentifier[name!=/^(?:status|showLabel|size|label|style|key|ref|className|style|children)$/]",
+        "message": "<StatusDot> doesn't accept that prop. Declared props: status, showLabel, size, label, style."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "AddressCardAction": {
+        "replaces": []
+      },
+      "AdminRow": {
+        "replaces": []
+      },
+      "Badge": {
+        "replaces": []
+      },
+      "Breadcrumbs": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "FormatRow": {
+        "replaces": []
+      },
+      "ModeToggleOption": {
+        "replaces": []
+      },
+      "SearchInput": {
+        "replaces": []
+      },
+      "Stat": {
+        "replaces": []
+      },
+      "StatusDot": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-100",
+      "--accent-500",
+      "--bg",
+      "--border",
+      "--border-faint",
+      "--color-accent",
+      "--color-bg",
+      "--color-border",
+      "--color-border-faint",
+      "--color-primary",
+      "--color-primary-fg",
+      "--color-primary-muted",
+      "--color-primary-strong",
+      "--color-surface",
+      "--color-surface-sunken",
+      "--danger",
+      "--dur",
+      "--dur-fast",
+      "--ease",
+      "--error",
+      "--error-bg",
+      "--font-mono",
+      "--font-sans",
+      "--fs-2xs",
+      "--fs-body",
+      "--fs-display",
+      "--fs-h1",
+      "--fs-h2",
+      "--fs-h3",
+      "--fs-mono",
+      "--fs-mono-lg",
+      "--fs-sm",
+      "--fs-xs",
+      "--fw-bold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--gradient-primary",
+      "--green-050",
+      "--green-100",
+      "--green-300",
+      "--green-500",
+      "--green-700",
+      "--green-800",
+      "--green-900",
+      "--hairline",
+      "--info",
+      "--ink-400",
+      "--ink-600",
+      "--ink-900",
+      "--lh-normal",
+      "--lh-snug",
+      "--lh-tight",
+      "--ls-eyebrow",
+      "--ls-tight",
+      "--map-bldg",
+      "--map-block",
+      "--map-land",
+      "--map-road",
+      "--map-road2",
+      "--ok",
+      "--press-opacity",
+      "--press-scale",
+      "--r-full",
+      "--r-lg",
+      "--r-md",
+      "--r-sm",
+      "--r-xl",
+      "--r-xs",
+      "--shadow-card",
+      "--shadow-md",
+      "--shadow-pin",
+      "--shadow-primary",
+      "--shadow-sm",
+      "--shadow-xs",
+      "--space-2xl",
+      "--space-2xs",
+      "--space-lg",
+      "--space-md",
+      "--space-sm",
+      "--space-xl",
+      "--space-xs",
+      "--surface",
+      "--text-on-primary",
+      "--text-primary",
+      "--text-secondary",
+      "--text-tertiary",
+      "--tg-green",
+      "--tg-red",
+      "--tg-yellow",
+      "--warn"
+    ],
+    "tokenKinds": {
+      "--green-900": "color",
+      "--green-800": "color",
+      "--green-700": "color",
+      "--green-500": "color",
+      "--green-300": "color",
+      "--green-100": "color",
+      "--green-050": "color",
+      "--accent-500": "color",
+      "--accent-100": "color",
+      "--ink-900": "color",
+      "--ink-600": "color",
+      "--ink-400": "color",
+      "--surface": "color",
+      "--bg": "color",
+      "--border": "color",
+      "--border-faint": "color",
+      "--ok": "color",
+      "--info": "color",
+      "--warn": "color",
+      "--error": "color",
+      "--error-bg": "color",
+      "--danger": "color",
+      "--tg-green": "color",
+      "--tg-yellow": "color",
+      "--tg-red": "color",
+      "--map-land": "color",
+      "--map-block": "color",
+      "--map-road": "color",
+      "--map-road2": "color",
+      "--map-bldg": "color",
+      "--color-primary": "color",
+      "--color-primary-strong": "color",
+      "--color-primary-fg": "color",
+      "--color-primary-muted": "color",
+      "--gradient-primary": "color",
+      "--color-bg": "color",
+      "--color-surface": "color",
+      "--color-surface-sunken": "color",
+      "--color-border": "color",
+      "--color-border-faint": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-tertiary": "font",
+      "--text-on-primary": "font",
+      "--color-accent": "color",
+      "--font-sans": "font",
+      "--font-mono": "font",
+      "--fs-display": "spacing",
+      "--fs-h1": "spacing",
+      "--fs-h2": "spacing",
+      "--fs-h3": "spacing",
+      "--fs-body": "spacing",
+      "--fs-sm": "spacing",
+      "--fs-xs": "spacing",
+      "--fs-2xs": "spacing",
+      "--fs-mono-lg": "spacing",
+      "--fs-mono": "spacing",
+      "--fw-regular": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--fw-bold": "font",
+      "--lh-tight": "font",
+      "--lh-snug": "font",
+      "--lh-normal": "font",
+      "--ls-eyebrow": "font",
+      "--ls-tight": "font",
+      "--space-2xs": "spacing",
+      "--space-xs": "spacing",
+      "--space-sm": "spacing",
+      "--space-md": "spacing",
+      "--space-lg": "spacing",
+      "--space-xl": "spacing",
+      "--space-2xl": "spacing",
+      "--r-xs": "spacing",
+      "--r-sm": "spacing",
+      "--r-md": "spacing",
+      "--r-lg": "spacing",
+      "--r-xl": "spacing",
+      "--r-full": "spacing",
+      "--hairline": "color",
+      "--shadow-xs": "shadow",
+      "--shadow-sm": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-card": "shadow",
+      "--shadow-primary": "shadow",
+      "--shadow-pin": "shadow",
+      "--ease": "other",
+      "--dur-fast": "other",
+      "--dur": "other",
+      "--press-scale": "other",
+      "--press-opacity": "other"
+    },
+    "fontFamilies": [
+      "JetBrains Mono"
+    ]
+  }
+}

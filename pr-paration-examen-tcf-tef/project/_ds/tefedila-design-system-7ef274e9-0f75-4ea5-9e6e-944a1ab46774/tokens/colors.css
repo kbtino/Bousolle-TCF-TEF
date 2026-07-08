@@ -1,0 +1,69 @@
+/* ============================================================
+   Tefedila — Color tokens
+   Forest-green civic palette. Derived from the production
+   mobile theme (tefedila_mobile/src/lib/theme.ts) and the
+   redesign mockup.
+   ============================================================ */
+:root {
+  /* --- Brand green --- */
+  --green-900: #0a4f3d;  /* primaryDark — deepest, gradient end */
+  --green-800: #0c5c48;  /* gradient mid */
+  --green-700: #0F6E56;  /* PRIMARY — buttons, accents, brand */
+  --green-500: #0F9B80;  /* teal — secondary code segment */
+  --green-300: #7fd4bc;  /* primaryMuted — labels on dark green */
+  --green-100: #d7efe6;  /* tint fill */
+  --green-050: #eef7f3;  /* faint tint */
+
+  /* --- Accent (sandy / Sahel) --- */
+  --accent-500: #f4a460; /* peru — sparingly: highlights, one-time keys */
+  --accent-100: #fff8ed; /* accent tint surface */
+
+  /* --- Neutrals --- */
+  --ink-900: #1a1a1a;    /* primary text */
+  --ink-600: #6b7280;    /* muted text, labels */
+  --ink-400: #9ca3af;    /* muted-light, placeholders */
+  --surface: #ffffff;    /* cards */
+  --bg:      #f5f7f5;    /* app background (cool green-gray) */
+  --border:  #e8e9e8;    /* hairline borders */
+  --border-faint: #f0f1f0;
+
+  /* --- Semantic status --- */
+  --ok:        #22c55e;
+  --info:      #60a5fa;  /* initializing */
+  --warn:      #f59e0b;  /* degraded */
+  --error:     #b91c1c;  /* text/borders */
+  --error-bg:  #fef2f2;
+  --danger:    #ef4444;  /* down/unreachable dots */
+
+  /* --- Togo flag --- */
+  --tg-green:  #006B3F;
+  --tg-yellow: #FFCD00;
+  --tg-red:    #D21034;
+
+  /* --- Map terrain (mini-map fallback) --- */
+  --map-land:  #e8dfc8;
+  --map-block: #ddd5bc;
+  --map-road:  #fff6e8;
+  --map-road2: #f3ead6;
+  --map-bldg:  #c9b896;
+
+  /* ===== Semantic aliases (use these in components) ===== */
+  --color-primary:        var(--green-700);
+  --color-primary-strong: var(--green-900);
+  --color-primary-fg:     #ffffff;
+  --color-primary-muted:  var(--green-300);
+  --gradient-primary: linear-gradient(135deg, #0F6E56 0%, #0c5c48 60%, #0a4f3d 100%); /* @kind color */
+
+  --color-bg:               var(--bg);
+  --color-surface:          var(--surface);
+  --color-surface-sunken:   var(--bg);
+  --color-border:           var(--border);
+  --color-border-faint:     var(--border-faint);
+
+  --text-primary:    var(--ink-900);
+  --text-secondary:  var(--ink-600);
+  --text-tertiary:   var(--ink-400);
+  --text-on-primary: #ffffff;
+
+  --color-accent:    var(--accent-500);
+}

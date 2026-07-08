@@ -1,0 +1,30 @@
+/* ============================================================
+   Boussole — Typography tokens
+   Sans = native system stack (deliberate, no webfont).
+   Mono = JetBrains Mono, loaded via next/font in layout.tsx and
+   exposed as --font-jetbrains-mono; numbers (scores, prices,
+   timers, dates) always use it, body text never does.
+   ============================================================ */
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale (px) — compact, mobile-first product UI */
+  --fs-display: 27px;
+  --fs-h1: 23px;
+  --fs-h2: 18px;
+  --fs-h3: 15px;
+  --fs-body: 13.5px;
+  --fs-sm: 12.5px;
+  --fs-xs: 11px;
+  --fs-2xs: 10px; /* eyebrow labels */
+  --fs-mono-lg: 23px;
+  --fs-mono: 13px;
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-normal: 1.5;
+
+  --ls-eyebrow: 0.6px; /* uppercase tracked labels */
+  --ls-heading: -0.4px; /* large headline negative tracking */
+}

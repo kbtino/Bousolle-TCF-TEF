@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/colors.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/typography.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/tokens/effects.css">
+<link rel="stylesheet" href="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/styles.css">
+<script src="_ds/tefedila-design-system-7ef274e9-0f75-4ea5-9e6e-944a1ab46774/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+<style>
+body{margin:0;background:#e9ece9;font-family:var(--font-sans,system-ui,sans-serif)}
+a{color:#0F6E56}a:hover{color:#0a4f3d}
+input{outline:none}
+@keyframes bspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 12px 40px">
+
+  <!-- Barre de navigation du prototype (chrome de revue, pas le produit) -->
+  <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:560px">
+      <sc-for list="{{ navSteps }}" as="n" hint-placeholder-count="7">
+        <div onClick="{{ n.go }}" style="cursor:pointer;font-size:11px;font-weight:600;padding:5px 11px;border-radius:20px;background:{{ n.bg }};color:{{ n.fg }};border:.5px solid {{ n.bd }}" style-hover="opacity:.78">{{ n.label }}</div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <div style="width:min(420px,100%);background:#f5f7f5;border:.5px solid #d8dad8;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.12);overflow:hidden;min-height:780px;display:flex;flex-direction:column">
+
+    <!-- ============ 1 · INSCRIPTION ============ -->
+    <sc-if value="{{ isWelcome }}" hint-placeholder-val="{{ true }}">
+      <div data-screen-label="Inscription" style="flex:1;display:flex;flex-direction:column;padding:34px 22px 20px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#0F6E56,#0a4f3d);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;box-shadow:0 3px 8px rgba(15,110,86,.3)"><i class="ti ti-compass"></i></div>
+          <div style="font-weight:700;font-size:21px;color:#1a1a1a;letter-spacing:-.3px">Boussole</div>
+          <div style="font-size:12.5px;color:#6b7280;margin-top:-6px">Préparation TCF Canada · TEF Canada</div>
+        </div>
+        <div style="font-size:23px;font-weight:600;letter-spacing:-.4px;color:#1a1a1a;line-height:1.25;text-align:center;margin:26px 0 6px;text-wrap:pretty">Atteignez le niveau que votre dossier IRCC exige.</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin:16px 0 22px">
+          <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:#1a1a1a"><i class="ti ti-checklist" style="color:#0F6E56;font-size:15px;width:18px"></i>Formats officiels respectés — timing et épreuves réels</div>
+          <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:#1a1a1a"><i class="ti ti-sparkles" style="color:#0F6E56;font-size:15px;width:18px"></i>Correction IA de l'écrit et de l'oral, critère par critère</div>
+          <div style="display:flex;align-items:center;gap:9px;font-size:12.5px;color:#1a1a1a"><i class="ti ti-flag-pin" style="color:#0F6E56;font-size:15px;width:18px"></i>Seuils NCLC toujours visibles — vous savez où vous en êtes</div>
+        </div>
+        <input placeholder="Adresse e-mail" style="height:46px;border:.5px solid #e8e9e8;border-radius:10px;background:#fff;padding:0 14px;font-size:13.5px;color:#1a1a1a;font-family:inherit">
+        <div onClick="{{ goGoal }}" style="margin-top:10px;background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Créer mon compte</div>
+        <div style="display:flex;align-items:center;gap:10px;margin:14px 0">
+          <div style="flex:1;height:.5px;background:#e8e9e8"></div><span style="font-size:11px;color:#9ca3af">ou</span><div style="flex:1;height:.5px;background:#e8e9e8"></div>
+        </div>
+        <div onClick="{{ goGoal }}" style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13.5px;font-weight:500;color:#1a1a1a;cursor:pointer" style-hover="background:#fafbfa"><i class="ti ti-brand-google" style="font-size:16px"></i>Continuer avec Google</div>
+        <div style="margin-top:auto;padding-top:18px;text-align:center;font-size:10px;color:#9ca3af;line-height:1.5">Déjà inscrit ? <a href="#" style="font-weight:600">Se connecter</a><br>© Boussole · Accès gratuit sans carte bancaire</div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 2 · OBJECTIF ============ -->
+    <sc-if value="{{ isGoal }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Onboarding objectif" style="flex:1;display:flex;flex-direction:column;gap:18px;padding:24px 20px 20px">
+        <div>
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Votre préparation · 1/2</div>
+          <div style="font-size:20px;font-weight:600;letter-spacing:-.3px;color:#1a1a1a;margin-top:4px">Quel examen visez-vous ?</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <sc-for list="{{ examOpts }}" as="x" hint-placeholder-count="2">
+            <div onClick="{{ x.pick }}" style="cursor:pointer;background:#fff;border:1.5px solid {{ x.bd }};border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:5px" style-hover="opacity:.9">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:15px;font-weight:700;color:#1a1a1a">{{ x.name }}</span>
+                <i class="ti {{ x.icon }}" style="color:{{ x.iconColor }};font-size:17px"></i>
+              </div>
+              <div style="font-size:10.5px;color:#6b7280;line-height:1.45">{{ x.desc }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div>
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600;margin-bottom:8px">Objectif NCLC</div>
+          <div style="display:flex;gap:7px">
+            <sc-for list="{{ goalOpts }}" as="g" hint-placeholder-count="6">
+              <div onClick="{{ g.pick }}" style="cursor:pointer;flex:1;background:{{ g.bg }};border:.5px solid {{ g.bd }};border-radius:9px;padding:9px 0 7px;display:flex;flex-direction:column;align-items:center;gap:2px">
+                <span style="font-family:var(--font-mono);font-size:15px;font-weight:700;color:{{ g.fg }}">{{ g.n }}</span>
+                <span style="font-size:8.5px;color:{{ g.sub }};font-weight:600;text-transform:uppercase;letter-spacing:.4px">{{ g.tag }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font-size:10.5px;color:#6b7280;margin-top:7px;line-height:1.5">NCLC 7 est le seuil clé d'Entrée express (catégorie francophone).</div>
+        </div>
+        <div>
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600;margin-bottom:8px">Examen prévu</div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <sc-for list="{{ whenOpts }}" as="w" hint-placeholder-count="4">
+              <div onClick="{{ w.pick }}" style="cursor:pointer;background:{{ w.bg }};border:.5px solid {{ w.bd }};border-radius:20px;padding:8px 14px;font-size:12px;font-weight:500;color:{{ w.fg }}">{{ w.label }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+          <div onClick="{{ goDiagIntro }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Continuer <i class="ti ti-arrow-right"></i></div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 3 · INTRO DIAGNOSTIC ============ -->
+    <sc-if value="{{ isDiagIntro }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Intro diagnostic" style="flex:1;display:flex;flex-direction:column;gap:16px;padding:24px 20px 20px">
+        <div>
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Votre préparation · 2/2</div>
+          <div style="font-size:20px;font-weight:600;letter-spacing:-.3px;color:#1a1a1a;margin-top:4px">Test de niveau</div>
+          <div style="font-size:12.5px;color:#6b7280;line-height:1.55;margin-top:6px;text-wrap:pretty">Sans enjeu et sans note éliminatoire : ce test estime votre NCLC de départ et calibre votre plan d'étude.</div>
+        </div>
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div style="display:flex;align-items:center;gap:10px;padding:13px 14px">
+            <div style="width:34px;height:34px;border-radius:9px;background:#eef7f3;border:.5px solid #d7efe6;display:flex;align-items:center;justify-content:center;color:#0F6E56;font-size:16px"><i class="ti ti-list-check"></i></div>
+            <div style="flex:1;font-size:12.5px;color:#1a1a1a;font-weight:500">30 questions · toutes les épreuves</div>
+            <span style="font-family:var(--font-mono);font-size:11px;color:#6b7280">~25 min</span>
+          </div>
+          <div style="background:#f5f7f5">
+            <sc-for list="{{ diagParts }}" as="p" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:9px;padding:10px 14px;border-top:.5px solid #e8e9e8">
+                <i class="ti {{ p.icon }}" style="color:#6b7280;font-size:14px;width:16px"></i>
+                <span style="flex:1;font-size:12px;color:#1a1a1a">{{ p.name }}</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:#6b7280">{{ p.count }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:9px;background:#eef7f3;border:.5px solid #d7efe6;border-radius:10px;padding:11px 13px">
+          <i class="ti ti-info-circle" style="color:#0F6E56;font-size:15px;margin-top:1px"></i>
+          <div style="font-size:11.5px;color:#0a4f3d;line-height:1.5">Vous pouvez le refaire plus tard. Votre résultat reste privé.</div>
+        </div>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+          <div onClick="{{ startDiag }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Commencer le test</div>
+          <div onClick="{{ goResult }}" style="height:40px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#6b7280;cursor:pointer" style-hover="color:#1a1a1a">Plus tard</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 4 · DIAGNOSTIC (QCM + timer) ============ -->
+    <sc-if value="{{ isDiag }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Test diagnostic" style="flex:1;display:flex;flex-direction:column;gap:14px;padding:18px 20px 20px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-x" onClick="{{ goDiagIntro }}" style="color:#6b7280;font-size:18px;cursor:pointer"></i>
+          <span style="font-size:13px;font-weight:600;color:#1a1a1a">Test de niveau</span>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px;background:#fff;border:.5px solid #e8e9e8;border-radius:6px;padding:4px 9px">
+            <i class="ti ti-clock" style="color:#0F6E56;font-size:13px"></i>
+            <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:#1a1a1a">{{ diagClock }}</span>
+          </div>
+        </div>
+        <div>
+          <div style="position:relative;height:5px;border-radius:3px;background:#e8e9e8">
+            <div style="position:absolute;inset:0 auto 0 0;border-radius:3px;background:#0F6E56;width:{{ diagPct }};transition:width .3s"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">{{ diagSection }}</span>
+            <span style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280">Question {{ diagNum }}/30</span>
+          </div>
+        </div>
+        <sc-if value="{{ diagHasAudio }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div onClick="{{ toggleAudio }}" style="width:40px;height:40px;flex:none;border-radius:50%;background:#0F6E56;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer" style-hover="background:#0c5c48"><i class="ti {{ audioIcon }}"></i></div>
+            <div style="flex:1;display:flex;align-items:center;gap:2px;height:32px">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="32">
+                <div style="flex:1;height:{{ b.h }}px;border-radius:1px;background:{{ b.bg }}"></div>
+              </sc-for>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280;flex:none">{{ audioTime }}</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ diagHasPassage }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:13px 14px;font-size:13px;color:#1a1a1a;line-height:1.6">{{ diagPassage }}</div>
+        </sc-if>
+        <div style="font-size:15px;font-weight:600;color:#1a1a1a;line-height:1.45;text-wrap:pretty">{{ diagQuestion }}</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ diagOpts }}" as="o" hint-placeholder-count="4">
+            <div onClick="{{ o.pick }}" style="cursor:pointer;display:flex;align-items:center;gap:11px;background:{{ o.bg }};border:1.5px solid {{ o.bd }};border-radius:10px;padding:12px 13px;min-height:44px" style-hover="opacity:.9" style-active="opacity:.78">
+              <span style="width:24px;height:24px;flex:none;border-radius:50%;background:{{ o.lbg }};color:{{ o.lfg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">{{ o.letter }}</span>
+              <span style="font-size:13px;color:#1a1a1a;line-height:1.4">{{ o.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;text-align:center;font-size:9.5px;color:#9ca3af">Prototype : 5 questions représentatives des 30</div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 5 · ANALYSE ============ -->
+    <sc-if value="{{ isAnalyzing }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Analyse" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px">
+        <div style="width:38px;height:38px;border-radius:50%;border:3px solid #d7efe6;border-top-color:#0F6E56;animation:bspin .9s linear infinite"></div>
+        <div style="font-size:14px;font-weight:600;color:#1a1a1a">Analyse de vos réponses…</div>
+        <div style="font-size:11.5px;color:#6b7280">Estimation du niveau CECRL et NCLC</div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 6 · RÉSULTAT ============ -->
+    <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Résultat diagnostic" style="flex:1;display:flex;flex-direction:column">
+        <div style="background:linear-gradient(160deg,#0a4f3d 0%,#0F6E56 100%);padding:18px 16px 20px;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(160deg,#0a4f3d 0%,#0F6E56 100%);background-size:12px 12px,100% 100%">
+          <div style="text-align:center;font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#7fd4bc;font-weight:600">Résultat du test de niveau · TCF Canada</div>
+          <div style="display:flex;justify-content:center;margin-top:8px">{{ gauge }}</div>
+          <div style="text-align:center;font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,.8)">estimation ~302/699 · B1+ · <span style="color:#FFCD00;white-space:nowrap">objectif NCLC 7</span></div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:14px 16px 18px;margin-top:-8px">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.07)">
+            <div style="display:grid;grid-template-columns:1fr 58px 56px 30px;gap:8px;padding:11px 14px 6px;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;color:#9ca3af;font-weight:600">
+              <span>Épreuve</span><span style="text-align:right">Estimé</span><span style="text-align:right">Seuil 7</span><span></span>
+            </div>
+            <sc-for list="{{ resultRows }}" as="r" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:1fr 58px 56px 30px;gap:8px;align-items:center;padding:9px 14px;border-top:.5px solid #f0f1f0">
+                <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:#1a1a1a;font-weight:500"><i class="ti {{ r.icon }}" style="color:#6b7280;font-size:14px"></i>{{ r.name }}</div>
+                <div style="text-align:right;font-family:var(--font-mono);font-size:12px;font-weight:600;color:#1a1a1a">{{ r.score }}</div>
+                <div style="text-align:right;font-family:var(--font-mono);font-size:11px;color:#9ca3af">{{ r.seuil }}</div>
+                <div style="display:flex;justify-content:flex-end"><span style="width:8px;height:8px;border-radius:50%;background:{{ r.dot }}"></span></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <i class="ti ti-route" style="color:#0F6E56;font-size:16px;margin-top:1px"></i>
+            <div style="font-size:12px;color:#1a1a1a;line-height:1.55">Il vous manque environ <strong>29 points</strong> pour NCLC 7. Point faible prioritaire : <strong>compréhension de l'oral</strong>. C'est atteignable avec un plan de 6 semaines.</div>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+            <div onClick="{{ goDashboard }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 3px 8px rgba(15,110,86,.3)" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Commencer l'entraînement <i class="ti ti-arrow-right"></i></div>
+            <div style="text-align:center;font-size:10.5px;color:#9ca3af">Première recommandation : oral, série 5 · 12 min</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 7 · EXERCICE (audio + QCM + correction) ============ -->
+    <sc-if value="{{ isExercise }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Exercice oral" style="flex:1;display:flex;flex-direction:column;gap:13px;padding:18px 20px 20px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-arrow-left" onClick="{{ goResult }}" style="color:#6b7280;font-size:18px;cursor:pointer"></i>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:13px;font-weight:600;color:#1a1a1a">Compréhension de l'oral</span>
+            <span style="font-size:10px;color:#6b7280">Série 4 · niveau B1</span>
+          </div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px;background:#fff;border:.5px solid #e8e9e8;border-radius:6px;padding:4px 9px">
+            <i class="ti ti-clock" style="color:#0F6E56;font-size:13px"></i>
+            <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:#1a1a1a">{{ exClock }}</span>
+          </div>
+        </div>
+        <div style="position:relative;height:5px;border-radius:3px;background:#e8e9e8">
+          <div style="position:absolute;inset:0 auto 0 0;border-radius:3px;background:#0F6E56;width:{{ exPct }};transition:width .3s"></div>
+        </div>
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div onClick="{{ toggleAudio }}" style="width:40px;height:40px;flex:none;border-radius:50%;background:#0F6E56;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer" style-hover="background:#0c5c48"><i class="ti {{ audioIcon }}"></i></div>
+          <div style="flex:1;display:flex;align-items:center;gap:2px;height:32px">
+            <sc-for list="{{ bars }}" as="b" hint-placeholder-count="32">
+              <div style="flex:1;height:{{ b.h }}px;border-radius:1px;background:{{ b.bg }}"></div>
+            </sc-for>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280;flex:none">{{ audioTime }}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Dialogue en milieu professionnel</span>
+          <span style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280">Question {{ exNum }}/3</span>
+        </div>
+        <div style="font-size:15px;font-weight:600;color:#1a1a1a;line-height:1.45;text-wrap:pretty">{{ exQuestion }}</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ exOpts }}" as="o" hint-placeholder-count="4">
+            <div onClick="{{ o.pick }}" style="cursor:pointer;display:flex;align-items:center;gap:11px;background:{{ o.bg }};border:1.5px solid {{ o.bd }};border-radius:10px;padding:12px 13px;min-height:44px" style-hover="opacity:.92">
+              <span style="width:24px;height:24px;flex:none;border-radius:50%;background:{{ o.lbg }};color:{{ o.lfg }};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">{{ o.letter }}</span>
+              <span style="flex:1;font-size:13px;color:#1a1a1a;line-height:1.4">{{ o.label }}</span>
+              <i class="ti {{ o.icon }}" style="color:{{ o.iconColor }};font-size:16px"></i>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ exRevealed }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:{{ exVerdictColor }};font-weight:600"><i class="ti {{ exVerdictIcon }}"></i>{{ exVerdict }}</div>
+            <div style="font-size:12px;color:#1a1a1a;line-height:1.6;margin-top:6px">{{ exExplain }}</div>
+          </div>
+          <div onClick="{{ nextEx }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:44px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78">{{ exNextLabel }} <i class="ti ti-arrow-right"></i></div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- ============ 8 · SÉRIE TERMINÉE ============ -->
+    <sc-if value="{{ isExDone }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Série terminée" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px">
+        <div style="width:64px;height:64px;border-radius:50%;background:#eef7f3;border:.5px solid #d7efe6;display:flex;align-items:center;justify-content:center;color:#0F6E56;font-size:30px"><i class="ti ti-circle-check"></i></div>
+        <div style="font-size:20px;font-weight:600;letter-spacing:-.3px;color:#1a1a1a">Série terminée</div>
+        <div style="font-family:var(--font-mono);font-size:14px;color:#1a1a1a">{{ exScoreLabel }} bonnes réponses</div>
+        <div style="display:flex;gap:8px">
+          <div style="display:flex;align-items:center;gap:5px;background:#fff;border:.5px solid #e8e9e8;border-radius:20px;padding:6px 12px;font-size:11px;color:#1a1a1a"><i class="ti ti-flame" style="color:#f4a460"></i>7 jours de suite</div>
+          <div style="display:flex;align-items:center;gap:5px;background:#fff;border:.5px solid #e8e9e8;border-radius:20px;padding:6px 12px;font-size:11px;color:#1a1a1a"><i class="ti ti-trending-up" style="color:#0F6E56"></i>Oral +6 pts</div>
+        </div>
+        <div style="width:100%;margin-top:14px;display:flex;flex-direction:column;gap:8px">
+          <div onClick="{{ goPaywall }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Série suivante <i class="ti ti-arrow-right"></i></div>
+          <div onClick="{{ goDashboard }}" style="height:40px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#6b7280;cursor:pointer" style-hover="color:#1a1a1a">Retour au tableau de bord</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ D · DASHBOARD ============ -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Dashboard" style="flex:1;display:flex;flex-direction:column">
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:18px 16px 12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#0F6E56,#0a4f3d);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;box-shadow:0 2px 5px rgba(15,110,86,.3)"><i class="ti ti-compass"></i></div>
+            <div style="display:flex;flex-direction:column;gap:1px">
+              <div style="font-weight:700;font-size:15px;color:#1a1a1a;letter-spacing:-.2px">Boussole</div>
+              <div style="font-size:10.5px;color:#6b7280;white-space:nowrap">Bonjour, Awa</div>
+            </div>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:6px;background:#fff;border:.5px solid #e8e9e8;border-radius:6px;padding:5px 9px">
+              <i class="ti ti-calendar-event" style="color:#0F6E56;font-size:13px"></i>
+              <span style="font-family:var(--font-mono);font-size:11.5px;font-weight:600;color:#1a1a1a">J−42</span>
+            </div>
+          </div>
+          <div style="background:linear-gradient(135deg,#0F6E56 0%,#0c5c48 60%,#0a4f3d 100%);border-radius:14px;padding:16px 16px 13px;box-shadow:0 3px 8px rgba(15,110,86,.3);background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(135deg,#0F6E56 0%,#0c5c48 60%,#0a4f3d 100%);background-size:12px 12px,100% 100%">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#7fd4bc;font-weight:600">Niveau estimé · TCF Canada</div>
+            <div style="display:flex;align-items:baseline;gap:10px;margin-top:5px">
+              <div style="font-family:var(--font-mono);font-size:30px;font-weight:700;color:#fff;letter-spacing:-.5px">NCLC 6</div>
+              <div style="font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,.75)">B1+ · 302<span style="color:rgba(255,255,255,.45)">/699</span></div>
+            </div>
+            <div style="margin-top:10px">
+              <div style="position:relative;height:6px;border-radius:3px;background:rgba(255,255,255,.18)">
+                <div style="position:absolute;inset:0 auto 0 0;width:62%;border-radius:3px;background:#7fd4bc"></div>
+                <div style="position:absolute;top:-3px;left:78%;width:2px;height:12px;background:#FFCD00;border-radius:1px"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:rgba(255,255,255,.75)">
+                <span style="white-space:nowrap">Objectif : <strong style="color:#fff">NCLC 7</strong></span>
+                <span style="font-family:var(--font-mono)">encore ~29 pts</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:12px;padding-top:10px;border-top:.5px solid rgba(255,255,255,.16)">
+              <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.85)"><i class="ti ti-flame" style="color:#f4a460"></i>7 jours de suite</div>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.85)"><i class="ti ti-trending-up" style="color:#7fd4bc"></i>+18 pts ce mois</div>
+            </div>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:13px 14px 12px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Prochaine action recommandée</div>
+            <div style="display:flex;align-items:center;gap:11px;margin-top:9px">
+              <div style="width:38px;height:38px;border-radius:9px;background:#eef7f3;border:.5px solid #d7efe6;display:flex;align-items:center;justify-content:center;color:#0F6E56;font-size:18px"><i class="ti ti-headphones"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                <div style="font-size:13px;font-weight:600;color:#1a1a1a">Compréhension de l'oral — série 5</div>
+                <div style="font-size:11px;color:#6b7280">3 questions · ~12 min · votre point faible</div>
+              </div>
+            </div>
+            <div onClick="{{ startExercise }}" style="margin-top:11px;background:#0F6E56;color:#fff;border-radius:8px;height:44px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Commencer <i class="ti ti-arrow-right" style="font-size:15px"></i></div>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:2px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600;padding:10px 0 4px">Progression par épreuve</div>
+            <sc-for list="{{ dashSkills }}" as="s" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-top:.5px solid #f0f1f0">
+                <i class="ti {{ s.icon }}" style="color:#6b7280;font-size:16px;width:18px"></i>
+                <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                  <div style="display:flex;justify-content:space-between;font-size:12px">
+                    <span style="color:#1a1a1a;font-weight:500">{{ s.name }}</span>
+                    <span style="font-family:var(--font-mono);font-size:11px;color:{{ s.color }}">{{ s.score }}</span>
+                  </div>
+                  <div style="position:relative;height:4px;border-radius:2px;background:#f0f1f0">
+                    <div style="position:absolute;inset:0 auto 0 0;border-radius:2px;background:{{ s.color }};width:{{ s.pct }}"></div>
+                    <div style="position:absolute;top:-2px;left:{{ s.seuil }};width:1.5px;height:8px;background:#9ca3af"></div>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;background:#fff;border-top:.5px solid #e8e9e8;padding:6px 8px 10px">
+          <sc-for list="{{ tabItems }}" as="t" hint-placeholder-count="4">
+            <div onClick="{{ t.go }}" style="cursor:pointer;flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;min-height:44px" style-active="opacity:.78">
+              <i class="ti {{ t.icon }}" style="font-size:19px;color:{{ t.color }}"></i>
+              <span style="font-size:9.5px;font-weight:600;color:{{ t.color }}">{{ t.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ L · BIBLIOTHÈQUE ============ -->
+    <sc-if value="{{ isLibrary }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Bibliothèque exercices" style="flex:1;display:flex;flex-direction:column;gap:13px;padding:18px 16px 16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-arrow-left" onClick="{{ goDashboard }}" style="color:#6b7280;font-size:18px;cursor:pointer"></i>
+          <span style="font-size:15px;font-weight:600;color:#1a1a1a">Exercices</span>
+          <span style="margin-left:auto;font-size:10.5px;color:#6b7280">1 série gratuite restante aujourd'hui</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ libItems }}" as="l" hint-placeholder-count="7">
+            <div onClick="{{ l.go }}" style="cursor:pointer;display:flex;align-items:center;gap:11px;background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 13px;min-height:44px;box-shadow:0 1px 2px rgba(0,0,0,.05)" style-hover="opacity:.9" style-active="opacity:.78">
+              <div style="width:36px;height:36px;flex:none;border-radius:9px;background:{{ l.ibg }};border:.5px solid {{ l.ibd }};display:flex;align-items:center;justify-content:center;color:{{ l.ic }};font-size:17px"><i class="ti {{ l.icon }}"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0">
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="font-size:13px;font-weight:600;color:#1a1a1a">{{ l.name }}</span>
+                  <sc-if value="{{ l.ia }}" hint-placeholder-val="{{ false }}"><span style="font-size:8.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;background:#eef7f3;color:#0F6E56;border:.5px solid #d7efe6;border-radius:4px;padding:2px 5px">Correction IA</span></sc-if>
+                </div>
+                <span style="font-size:10.5px;color:#6b7280">{{ l.meta }}</span>
+              </div>
+              <sc-if value="{{ l.done }}" hint-placeholder-val="{{ false }}"><span style="font-family:var(--font-mono);font-size:10.5px;color:#0F6E56;white-space:nowrap">{{ l.result }}</span></sc-if>
+              <i class="ti {{ l.right }}" style="color:{{ l.rightColor }};font-size:16px"></i>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;text-align:center;font-size:9.5px;color:#9ca3af">Les épreuves suivent les formats officiels TCF Canada</div>
+      </div>
+    </sc-if>
+
+    <!-- ============ W · EXPRESSION ÉCRITE (IA) ============ -->
+    <sc-if value="{{ isWriting }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Expression écrite IA" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:18px 16px 16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-arrow-left" onClick="{{ goLibrary }}" style="color:#6b7280;font-size:18px;cursor:pointer"></i>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:13px;font-weight:600;color:#1a1a1a">Expression écrite · Tâche 2</span>
+            <span style="font-size:10px;color:#6b7280">Description de données · notée /24</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Consigne</div>
+          <div style="font-size:12.5px;color:#1a1a1a;line-height:1.55;margin-top:5px">Décrivez les informations du graphique : évolution des inscriptions à l'université entre 2010 et 2020. 60 à 120 mots.</div>
+        </div>
+        <sc-if value="{{ wEdit }}" hint-placeholder-val="{{ true }}">
+          <textarea defaultValue="Le graphique montre l'évolution du nombre d'étudiants inscrit à l'université entre 2010 et 2020. On observe une augmentation important du nombre d'inscriptions. En 2010, il y avait 2 000 étudiants, alors qu'en 2020 ils sont 3 500. Cette hausse s'explique par les nouvelles filières que l'université a ouvert." style="flex:1;min-height:190px;border:.5px solid #e8e9e8;border-radius:10px;background:#fff;padding:13px 14px;font-size:13px;color:#1a1a1a;line-height:1.65;font-family:inherit;resize:none;outline:none"></textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280">54 mots · min 60</span>
+            <span style="font-size:10.5px;color:#9ca3af">Brouillon enregistré</span>
+          </div>
+          <div onClick="{{ correctWriting }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)"><i class="ti ti-sparkles"></i>Corriger avec l'IA</div>
+        </sc-if>
+        <sc-if value="{{ wLoading }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+            <div style="width:34px;height:34px;border-radius:50%;border:3px solid #d7efe6;border-top-color:#0F6E56;animation:bspin .9s linear infinite"></div>
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a">Correction en cours…</div>
+            <div style="font-size:11px;color:#6b7280">Grammaire, lexique, cohérence, consigne</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ wDone }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:13px 14px;font-size:13px;color:#1a1a1a;line-height:1.75;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <sc-for list="{{ wSegments }}" as="g" hint-placeholder-count="9"><span style="background:{{ g.bg }};border-bottom:{{ g.bb }};border-radius:2px">{{ g.t }}</span></sc-for>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline">
+              <span style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Score estimé</span>
+              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:#1a1a1a">13<span style="color:#9ca3af">/24</span> <span style="font-size:10px;color:#f59e0b;font-weight:600">· seuil NCLC 7 : 14</span></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+              <sc-for list="{{ wCrit }}" as="c" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span style="width:118px;font-size:11px;color:#1a1a1a">{{ c.name }}</span>
+                  <div style="flex:1;position:relative;height:5px;border-radius:3px;background:#f0f1f0"><div style="position:absolute;inset:0 auto 0 0;border-radius:3px;background:{{ c.color }};width:{{ c.pct }}"></div></div>
+                  <span style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280;width:26px;text-align:right">{{ c.score }}/6</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:4px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600;padding:9px 0 3px">Corrections proposées</div>
+            <sc-for list="{{ wFixes }}" as="f" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:.5px solid #f0f1f0">
+                <div style="font-size:12px;line-height:1.5"><span style="color:#b91c1c;text-decoration:line-through">{{ f.from }}</span> → <strong style="color:#0F6E56">{{ f.to }}</strong></div>
+                <span style="font-size:10px;color:#6b7280">{{ f.type }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div onClick="{{ reviseWriting }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:44px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78">Réviser ma copie</div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- ============ S · EXPRESSION ORALE (IA) ============ -->
+    <sc-if value="{{ isSpeaking }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Expression orale IA" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:18px 16px 16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-arrow-left" onClick="{{ goLibrary }}" style="color:#6b7280;font-size:18px;cursor:pointer"></i>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:13px;font-weight:600;color:#1a1a1a">Expression orale · Tâche 2</span>
+            <span style="font-size:10px;color:#6b7280">Point de vue · 2 min de parole</span>
+          </div>
+        </div>
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Sujet</div>
+          <div style="font-size:12.5px;color:#1a1a1a;line-height:1.55;margin-top:5px">Certaines personnes pensent qu'il vaut mieux vivre en ville qu'à la campagne. Qu'en pensez-vous ? Donnez votre opinion et des exemples.</div>
+        </div>
+        <sc-if value="{{ sIdle }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+            <div onClick="{{ startRec }}" style="width:76px;height:76px;border-radius:50%;background:#0F6E56;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;box-shadow:0 3px 8px rgba(15,110,86,.3)" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.97)"><i class="ti ti-microphone"></i></div>
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a">Appuyez pour enregistrer</div>
+            <div style="font-size:11px;color:#6b7280;text-align:center;line-height:1.5">Préparez-vous 1 minute, puis parlez 2 minutes.<br>Votre réponse est transcrite et notée par l'IA.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sRec }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+            <div style="font-family:var(--font-mono);font-size:27px;font-weight:700;color:#1a1a1a">{{ sClock }}</div>
+            <div style="width:100%;display:flex;align-items:center;gap:2px;height:40px;padding:0 12px">
+              <sc-for list="{{ recBars }}" as="b" hint-placeholder-count="32">
+                <div style="flex:1;height:{{ b.h }}px;border-radius:1px;background:{{ b.bg }};transition:height .4s"></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#b91c1c"><span style="width:8px;height:8px;border-radius:50%;background:#ef4444"></span>Enregistrement en cours</div>
+            <div onClick="{{ stopRec }}" style="width:60px;height:60px;border-radius:50%;background:#fff;border:1.5px solid #ef4444;color:#ef4444;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer" style-active="opacity:.78"><i class="ti ti-player-stop-filled"></i></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sReview }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div onClick="{{ toggleAudio }}" style="width:40px;height:40px;flex:none;border-radius:50%;background:#0F6E56;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer"><i class="ti {{ audioIcon }}"></i></div>
+            <div style="flex:1;display:flex;align-items:center;gap:2px;height:32px">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="32">
+                <div style="flex:1;height:{{ b.h }}px;border-radius:1px;background:{{ b.bg }}"></div>
+              </sc-for>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280;flex:none">{{ sDur }}</div>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Transcription automatique</div>
+            <div style="font-size:12.5px;color:#1a1a1a;line-height:1.65;margin-top:6px;font-style:italic">« Euh… je pense que vivre en ville, c'est mieux parce que… il y a plus de possibilités de travail. Par exemple à Lomé, euh… on trouve beaucoup d'entreprises et les transports sont plus faciles. Mais la campagne, c'est plus calme, euh… pour les enfants. »</div>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+            <div onClick="{{ analyzeRec }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)"><i class="ti ti-sparkles"></i>Analyser ma réponse</div>
+            <div onClick="{{ reRec }}" style="height:38px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#6b7280;cursor:pointer" style-hover="color:#1a1a1a">Réenregistrer</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sLoading }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+            <div style="width:34px;height:34px;border-radius:50%;border:3px solid #d7efe6;border-top-color:#0F6E56;animation:bspin .9s linear infinite"></div>
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a">Analyse de votre réponse…</div>
+            <div style="font-size:11px;color:#6b7280">Prononciation, fluidité, grammaire, vocabulaire</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sDone }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline">
+              <span style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600">Niveau estimé — oral</span>
+              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:#1a1a1a">≈ NCLC 6 <span style="font-size:10px;color:#f59e0b;font-weight:600">· seuil 7 : 310/699</span></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+              <sc-for list="{{ sCrit }}" as="c" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span style="width:118px;font-size:11px;color:#1a1a1a">{{ c.name }}</span>
+                  <div style="flex:1;position:relative;height:5px;border-radius:3px;background:#f0f1f0"><div style="position:absolute;inset:0 auto 0 0;border-radius:3px;background:{{ c.color }};width:{{ c.pct }}"></div></div>
+                  <span style="font-family:var(--font-mono);font-size:10.5px;color:#6b7280;width:26px;text-align:right">{{ c.score }}/6</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:10px;padding:4px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+            <div style="font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#6b7280;font-weight:600;padding:9px 0 3px">Conseils</div>
+            <sc-for list="{{ sTips }}" as="t" hint-placeholder-count="3">
+              <div style="display:flex;gap:8px;padding:8px 0;border-top:.5px solid #f0f1f0;font-size:12px;color:#1a1a1a;line-height:1.5"><i class="ti ti-bulb" style="color:#f4a460;font-size:14px;margin-top:1px"></i><span>{{ t }}</span></div>
+            </sc-for>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+            <div onClick="{{ reRec }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:44px;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78">Réessayer la tâche</div>
+            <div onClick="{{ goLibrary }}" style="height:38px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#6b7280;cursor:pointer" style-hover="color:#1a1a1a">Retour aux exercices</div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- ============ 9 · PAYWALL ============ -->
+    <sc-if value="{{ isPaywall }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Paywall" style="flex:1;display:flex;flex-direction:column;gap:14px;padding:24px 20px 20px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+          <div style="width:48px;height:48px;border-radius:12px;background:#eef7f3;border:.5px solid #d7efe6;display:flex;align-items:center;justify-content:center;color:#0F6E56;font-size:22px"><i class="ti ti-lock"></i></div>
+          <div style="font-size:18px;font-weight:600;letter-spacing:-.3px;color:#1a1a1a;line-height:1.3;text-wrap:pretty">Vous avez terminé vos {{ freeLimit }} séries gratuites du jour</div>
+          <div style="font-size:12px;color:#6b7280;line-height:1.55;text-wrap:pretty">Revenez demain — c'est gratuit. Ou continuez sans limite dès maintenant.</div>
+        </div>
+        <div style="display:flex;background:#e8e9e8;border-radius:9px;padding:3px">
+          <sc-for list="{{ planTabs }}" as="t" hint-placeholder-count="2">
+            <div onClick="{{ t.pick }}" style="cursor:pointer;flex:1;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;background:{{ t.bg }};color:{{ t.fg }};box-shadow:{{ t.sh }}">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ planPerks }}" as="p" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#1a1a1a"><i class="ti ti-check" style="color:#0F6E56;font-size:14px"></i>{{ p }}</div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+          <sc-for list="{{ durOpts }}" as="d" hint-placeholder-count="3">
+            <div onClick="{{ d.pick }}" style="cursor:pointer;position:relative;background:#fff;border:1.5px solid {{ d.bd }};border-radius:11px;padding:12px 10px 10px;display:flex;flex-direction:column;gap:3px;align-items:center;text-align:center">
+              <sc-if value="{{ d.popular }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:-8px;font-size:8.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;background:#0F6E56;color:#fff;border-radius:4px;padding:2px 7px;white-space:nowrap">populaire</span>
+              </sc-if>
+              <span style="font-size:11px;color:#6b7280;font-weight:500">{{ d.label }}</span>
+              <span style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:#1a1a1a;white-space:nowrap">{{ d.price }} F</span>
+              <span style="font-size:9.5px;color:#9ca3af;white-space:nowrap">{{ d.usd }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+          <div onClick="{{ goCheckout }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 3px 8px rgba(15,110,86,.3)" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">{{ payCta }}</div>
+          <div onClick="{{ goResult }}" style="height:38px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#6b7280;cursor:pointer" style-hover="color:#1a1a1a">Revenir demain — c'est gratuit</div>
+          <div style="text-align:center;font-size:9.5px;color:#9ca3af">Paiement sécurisé Stripe · annulable à tout moment</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 10 · PAIEMENT ============ -->
+    <sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Paiement" style="flex:1;display:flex;flex-direction:column;gap:14px;padding:20px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-arrow-left" onClick="{{ goPaywall }}" style="color:#6b7280;font-size:18px;cursor:pointer"></i>
+          <span style="font-size:13px;font-weight:600;color:#1a1a1a">Paiement</span>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:5px;font-size:10.5px;color:#6b7280"><i class="ti ti-lock" style="font-size:12px"></i>Sécurisé par Stripe</div>
+        </div>
+        <div style="background:#fff;border:.5px solid #e8e9e8;border-radius:12px;padding:14px;display:flex;align-items:center;gap:11px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#0F6E56,#0a4f3d);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px"><i class="ti ti-compass"></i></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:1px">
+            <span style="font-size:13px;font-weight:600;color:#1a1a1a">Boussole {{ planName }}</span>
+            <span style="font-size:11px;color:#6b7280">{{ durSummary }} · sans engagement</span>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:#1a1a1a;white-space:nowrap">{{ payAmount }} F</span>
+        </div>
+        <div style="display:flex;background:#e8e9e8;border-radius:9px;padding:3px">
+          <sc-for list="{{ methodTabs }}" as="t" hint-placeholder-count="2">
+            <div onClick="{{ t.pick }}" style="cursor:pointer;flex:1;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12.5px;font-weight:600;background:{{ t.bg }};color:{{ t.fg }};box-shadow:{{ t.sh }}"><i class="ti {{ t.icon }}" style="font-size:14px"></i>{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ isCard }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <input placeholder="Numéro de carte" style="height:44px;border:.5px solid #e8e9e8;border-radius:10px;background:#fff;padding:0 14px;font-size:13px;font-family:var(--font-mono);color:#1a1a1a">
+            <div style="display:flex;gap:8px">
+              <input placeholder="MM/AA" style="flex:1;height:44px;border:.5px solid #e8e9e8;border-radius:10px;background:#fff;padding:0 14px;font-size:13px;font-family:var(--font-mono);color:#1a1a1a;min-width:0">
+              <input placeholder="CVC" style="flex:1;height:44px;border:.5px solid #e8e9e8;border-radius:10px;background:#fff;padding:0 14px;font-size:13px;font-family:var(--font-mono);color:#1a1a1a;min-width:0">
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isMomo }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ momoNets }}" as="m" hint-placeholder-count="3">
+                <div onClick="{{ m.pick }}" style="cursor:pointer;flex:1;background:#fff;border:1.5px solid {{ m.bd }};border-radius:10px;padding:10px 0;text-align:center;font-size:12px;font-weight:600;color:#1a1a1a">{{ m.label }}</div>
+              </sc-for>
+            </div>
+            <input placeholder="Numéro mobile money" style="height:44px;border:.5px solid #e8e9e8;border-radius:10px;background:#fff;padding:0 14px;font-size:13px;font-family:var(--font-mono);color:#1a1a1a">
+          </div>
+        </sc-if>
+        <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+          <div onClick="{{ goPaid }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Payer {{ payAmount }} F</div>
+          <div style="text-align:center;font-size:9.5px;color:#9ca3af;line-height:1.5">Reçu envoyé par e-mail. Remboursement sous 7 jours si aucune série entamée.</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ 11 · CONFIRMATION ============ -->
+    <sc-if value="{{ isPaid }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Confirmation paiement" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0F6E56,#0a4f3d);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;box-shadow:0 3px 8px rgba(15,110,86,.3)"><i class="ti ti-check"></i></div>
+        <div style="font-size:20px;font-weight:600;letter-spacing:-.3px;color:#1a1a1a">Bienvenue dans Boussole {{ planName }}</div>
+        <div style="font-size:12.5px;color:#6b7280;line-height:1.55;max-width:260px;text-wrap:pretty">Votre accès est actif. Toutes les séries, simulations et corrections IA sont débloquées.</div>
+        <div style="width:100%;margin-top:12px">
+          <div onClick="{{ goDashboard }}" style="background:#0F6E56;color:#fff;border-radius:10px;height:46px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#0c5c48" style-active="opacity:.78;transform:scale(.99)">Reprendre l'entraînement <i class="ti ti-arrow-right"></i></div>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+  <div style="font-size:10px;color:#9ca3af">BoussoleTCF-TEF · prototype mobile du parcours critique · base 1a + jauge 1b + seuils 1c</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:900},&quot;protoNav&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;freeLimit&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:1,&quot;max&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Freemium&quot;},&quot;premiumFirst&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Freemium&quot;}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'welcome',
+    exam: 'TCF', goal: 7, when: '3mois',
+    diagIdx: 0, diagSel: null, diagTime: 1500,
+    exIdx: 0, exSel: null, exRevealed: false, exScore: 0, exTime: 720,
+    audioPlaying: false, audioPos: 0,
+    wPhase: 'edit', sPhase: 'idle', sTime: 0,
+    plan: null, dur: 'mois', method: 'card', momo: 'T-Money',
+  };
+
+  diagQs = [
+    { section: "Compréhension de l'oral", audio: true, q: "Vous entendez ce message à la radio. Que propose l'annonce ?", opts: ["Un concert gratuit ce week-end", "Une réduction sur les billets de train", "L'ouverture d'un nouveau marché", "Un changement d'horaires de bus"] },
+    { section: 'Structures de la langue', q: "« Si j'avais su que tu venais, je ___ un plat de plus. »", opts: ["préparerais", "aurais préparé", "préparais", "ai préparé"] },
+    { section: "Compréhension de l'écrit", passage: "« La bibliothèque municipale sera fermée du 2 au 15 mars pour travaux. Les retours de livres restent possibles à la borne extérieure, 24 h/24. »", q: "Pendant les travaux, il est possible de…", opts: ["emprunter de nouveaux livres", "rendre des livres à toute heure", "réserver une salle d'étude", "rencontrer un bibliothécaire"] },
+    { section: 'Structures de la langue', q: "« Elle a réussi son examen ___ ses efforts. »", opts: ["grâce à", "à cause de", "malgré", "faute de"] },
+    { section: "Compréhension de l'écrit", passage: "« Recherchons vendeur(se) à temps partiel. Expérience souhaitée mais non exigée. Se présenter avec CV entre 9 h et 12 h. »", q: "Pour postuler, il faut…", opts: ["avoir une expérience obligatoire", "envoyer le CV par courriel", "venir le matin avec un CV", "téléphoner avant midi"] },
+  ];
+
+  exQs = [
+    { q: "Deux collègues parlent d'une réunion. Quand aura-t-elle finalement lieu ?", opts: ["Lundi matin", "Mardi après-midi", "Jeudi matin", "Vendredi après-midi"], correct: 2, explain: "L'homme se corrige en fin de dialogue : « finalement, ce sera jeudi, à 9 heures ». Mardi et vendredi sont des distracteurs — au TCF, la bonne information arrive souvent après une correction." },
+    { q: "Pourquoi la femme ne peut-elle pas y assister ?", opts: ["Elle est en congé", "Elle a un rendez-vous médical", "Elle reçoit un client", "Elle est en déplacement"], correct: 3, explain: "« Je serai à Kara toute la semaine » indique un déplacement. Le rendez-vous médical est bien mentionné, mais pour une autre semaine — attention aux détails déplacés dans le temps." },
+    { q: "Que propose l'homme à la fin de la conversation ?", opts: ["Reporter la réunion", "Envoyer un compte rendu", "Organiser un appel vidéo", "Annuler le projet"], correct: 1, explain: "« Je t'enverrai le compte rendu dès la fin » : il propose un compte rendu. Il ne reporte pas la réunion — proposer une solution n'est pas changer la décision." },
+  ];
+
+  barH = [12, 18, 9, 22, 15, 26, 11, 19, 24, 8, 16, 21, 13, 25, 10, 18, 23, 14, 9, 20, 26, 12, 17, 22, 11, 15, 19, 24, 10, 16, 21, 13];
+  AUDIO_LEN = 32;
+
+  componentDidMount() { this._t = setInterval(() => this.tick(), 1000); }
+  componentWillUnmount() { clearInterval(this._t); clearTimeout(this._a); clearTimeout(this._d); clearTimeout(this._w); clearTimeout(this._s); }
+
+  tick() {
+    const s = this.state, u = {};
+    if (s.screen === 'diag' && s.diagTime > 0) u.diagTime = s.diagTime - 1;
+    if (s.screen === 'exercise' && s.exTime > 0) u.exTime = s.exTime - 1;
+    if (s.sPhase === 'rec') u.sTime = s.sTime + 1;
+    if (s.audioPlaying) {
+      const p = s.audioPos + 1;
+      if (p >= this.AUDIO_LEN) { u.audioPlaying = false; u.audioPos = this.AUDIO_LEN; } else u.audioPos = p;
+    }
+    if (Object.keys(u).length) this.setState(u);
+  }
+
+  fmt(t) { const m = Math.floor(t / 60), s = t % 60; return m + ':' + String(s).padStart(2, '0'); }
+
+  go(screen) {
+    const u = { screen, audioPlaying: false, audioPos: 0 };
+    if (screen === 'diag') Object.assign(u, { diagIdx: 0, diagSel: null, diagTime: 1500 });
+    if (screen === 'exercise') Object.assign(u, { exIdx: 0, exSel: null, exRevealed: false, exScore: 0, exTime: 720 });
+    if (screen === 'writing') u.wPhase = 'edit';
+    if (screen === 'speaking') Object.assign(u, { sPhase: 'idle', sTime: 0 });
+    this.setState(u);
+    if (screen === 'analyzing') { clearTimeout(this._d); this._d = setTimeout(() => this.setState({ screen: 'result' }), 1900); }
+  }
+
+  pickDiag(i) {
+    if (this.state.diagSel != null) return;
+    this.setState({ diagSel: i });
+    clearTimeout(this._a);
+    this._a = setTimeout(() => {
+      const n = this.state.diagIdx + 1;
+      if (n >= this.diagQs.length) this.go('analyzing');
+      else this.setState({ diagIdx: n, diagSel: null, audioPlaying: false, audioPos: 0 });
+    }, 450);
+  }
+
+  pickEx(i) {
+    if (this.state.exRevealed) return;
+    const ok = i === this.exQs[this.state.exIdx].correct;
+    this.setState({ exSel: i, exRevealed: true, exScore: this.state.exScore + (ok ? 1 : 0), audioPlaying: false });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const P = this.props;
+    const plan = s.plan ?? ((P.premiumFirst ?? false) ? 'premium' : 'standard');
+    const screen = s.screen;
+
+    // proto nav
+    const groups = { welcome: 0, goal: 1, diagintro: 2, diag: 2, analyzing: 2, result: 3, dashboard: 4, library: 5, exercise: 6, exdone: 6, writing: 7, speaking: 8, paywall: 9, checkout: 10, paid: 10 };
+    const steps = [
+      ['Inscription', 'welcome'], ['Objectif', 'goal'], ['Diagnostic', 'diagintro'], ['Résultat', 'result'], ['Dashboard', 'dashboard'], ['Exercices', 'library'], ['QCM', 'exercise'], ['Écrit IA', 'writing'], ['Oral IA', 'speaking'], ['Paywall', 'paywall'], ['Paiement', 'checkout'],
+    ];
+    const navSteps = steps.map(([label, target], i) => {
+      const active = groups[screen] === i;
+      return { label, go: () => this.go(target), bg: active ? '#0F6E56' : '#fff', fg: active ? '#fff' : '#6b7280', bd: active ? '#0F6E56' : '#d8dad8' };
+    });
+
+    // onboarding
+    const examOpts = [
+      { name: 'TCF Canada', desc: 'QCM + 3 tâches écrites, 3 orales · score /699', k: 'TCF', icon2: true },
+      { name: 'TEF Canada', desc: 'QCM + 2 tâches écrites, 5 orales · score /450', k: 'TEF' },
+    ].map((x) => ({
+      name: x.name, desc: x.desc,
+      bd: s.exam === x.k ? '#0F6E56' : '#e8e9e8',
+      icon: s.exam === x.k ? 'ti-circle-check-filled' : 'ti-circle',
+      iconColor: s.exam === x.k ? '#0F6E56' : '#d1d5db',
+      pick: () => this.setState({ exam: x.k }),
+    }));
+    const goalOpts = [5, 6, 7, 8, 9, 10].map((n) => {
+      const sel = s.goal === n;
+      return {
+        n, tag: n === 7 ? 'seuil EE' : ' ',
+        bg: sel ? '#0F6E56' : '#fff', bd: sel ? '#0F6E56' : '#e8e9e8',
+        fg: sel ? '#fff' : '#1a1a1a', sub: sel ? '#7fd4bc' : (n === 7 ? '#0F6E56' : 'transparent'),
+        pick: () => this.setState({ goal: n }),
+      };
+    });
+    const whenOpts = [['1mois', 'Dans 1 mois'], ['3mois', 'Dans 3 mois'], ['6mois', 'Dans 6 mois'], ['nd', 'Pas encore fixé']].map(([k, label]) => {
+      const sel = s.when === k;
+      return { label, bg: sel ? '#0F6E56' : '#fff', bd: sel ? '#0F6E56' : '#e8e9e8', fg: sel ? '#fff' : '#1a1a1a', pick: () => this.setState({ when: k }) };
+    });
+
+    const diagParts = [
+      { icon: 'ti-headphones', name: "Compréhension de l'oral", count: '10 questions' },
+      { icon: 'ti-abc', name: 'Structures de la langue', count: '10 questions' },
+      { icon: 'ti-book', name: "Compréhension de l'écrit", count: '10 questions' },
+    ];
+
+    // diagnostic
+    const dq = this.diagQs[s.diagIdx];
+    const diagOpts = dq.opts.map((label, i) => {
+      const sel = s.diagSel === i;
+      return {
+        label, letter: 'ABCD'[i],
+        bg: sel ? '#eef7f3' : '#fff', bd: sel ? '#0F6E56' : '#e8e9e8',
+        lbg: sel ? '#0F6E56' : '#f5f7f5', lfg: sel ? '#fff' : '#6b7280',
+        pick: () => this.pickDiag(i),
+      };
+    });
+
+    // audio
+    const bars = this.barH.map((h, i) => ({ h, bg: i < s.audioPos ? '#0F6E56' : '#d1d5db' }));
+
+    // exercise
+    const eq = this.exQs[s.exIdx];
+    const exOpts = eq.opts.map((label, i) => {
+      const revealed = s.exRevealed, correct = i === eq.correct, picked = s.exSel === i;
+      let bg = '#fff', bd = '#e8e9e8', lbg = '#f5f7f5', lfg = '#6b7280', icon = '', iconColor = 'transparent';
+      if (revealed && correct) { bg = '#eef7f3'; bd = '#0F9B80'; lbg = '#0F6E56'; lfg = '#fff'; icon = 'ti-check'; iconColor = '#0F6E56'; }
+      else if (revealed && picked) { bg = '#fef2f2'; bd = '#ef4444'; lbg = '#b91c1c'; lfg = '#fff'; icon = 'ti-x'; iconColor = '#b91c1c'; }
+      return { label, letter: 'ABCD'[i], bg, bd, lbg, lfg, icon, iconColor, pick: () => this.pickEx(i) };
+    });
+    const exOk = s.exSel === eq.correct;
+
+    // paywall
+    const prices = {
+      standard: { semaine: ['2 500', '~4 $ US'], mois: ['6 000', '~10 $ US'], trois: ['15 000', '~25 $ US'] },
+      premium: { semaine: ['4 000', '~6,5 $ US'], mois: ['10 000', '~17 $ US'], trois: ['25 000', '~42 $ US'] },
+    };
+    const planTabs = [['standard', 'Standard'], ['premium', 'Premium oral']].map(([k, label]) => {
+      const sel = plan === k;
+      return { label, bg: sel ? '#fff' : 'transparent', fg: sel ? '#1a1a1a' : '#6b7280', sh: sel ? '0 1px 2px rgba(0,0,0,.1)' : 'none', pick: () => this.setState({ plan: k }) };
+    });
+    const planPerks = plan === 'standard'
+      ? ['Séries et simulations illimitées', "Correction IA de l'expression écrite", 'Plan d\u2019étude 30/60/90 jours']
+      : ['Tout Standard, plus :', "Correction IA de l'expression orale (prononciation, fluidité)", 'Simulations orales en conditions réelles'];
+    const durLabels = { semaine: ['Semaine', '1 semaine'], mois: ['Mois', '1 mois'], trois: ['3 mois', '3 mois'] };
+    const durOpts = ['semaine', 'mois', 'trois'].map((k) => ({
+      label: durLabels[k][0], price: prices[plan][k][0], usd: prices[plan][k][1],
+      bd: s.dur === k ? '#0F6E56' : '#e8e9e8', popular: k === 'mois',
+      pick: () => this.setState({ dur: k }),
+    }));
+    const perLabel = { semaine: 'semaine', mois: 'mois', trois: '3 mois' }[s.dur];
+    const payAmount = prices[plan][s.dur][0];
+    const planName = plan === 'standard' ? 'Standard' : 'Premium';
+
+    // checkout
+    const methodTabs = [['card', 'Carte', 'ti-credit-card'], ['momo', 'Mobile money', 'ti-device-mobile']].map(([k, label, icon]) => {
+      const sel = s.method === k;
+      return { label, icon, bg: sel ? '#fff' : 'transparent', fg: sel ? '#1a1a1a' : '#6b7280', sh: sel ? '0 1px 2px rgba(0,0,0,.1)' : 'none', pick: () => this.setState({ method: k }) };
+    });
+    const momoNets = ['T-Money', 'Flooz', 'Orange'].map((label) => ({ label, bd: s.momo === label ? '#0F6E56' : '#e8e9e8', pick: () => this.setState({ momo: label }) }));
+
+    // dashboard
+    const dashSkills = [
+      { icon: 'ti-headphones', name: "Compréhension de l'oral", score: '289/699', pct: '54%', seuil: '72%', color: '#f59e0b' },
+      { icon: 'ti-book', name: "Compréhension de l'écrit", score: '318/699', pct: '66%', seuil: '74%', color: '#0F9B80' },
+      { icon: 'ti-pencil', name: 'Expression écrite', score: '13/24', pct: '54%', seuil: '58%', color: '#f59e0b' },
+      { icon: 'ti-microphone', name: 'Expression orale', score: '296/699', pct: '58%', seuil: '68%', color: '#f59e0b' },
+    ];
+    const tabItems = [
+      { icon: 'ti-home', label: 'Accueil', go: () => this.go('dashboard'), color: screen === 'dashboard' ? '#0F6E56' : '#9ca3af' },
+      { icon: 'ti-list-check', label: 'Exercices', go: () => this.go('library'), color: '#9ca3af' },
+      { icon: 'ti-clipboard-text', label: 'Simulation', go: () => this.go('paywall'), color: '#9ca3af' },
+      { icon: 'ti-user', label: 'Profil', go: () => {}, color: '#9ca3af' },
+    ];
+
+    // bibliothèque
+    const mkLib = (icon, name, meta, opts) => Object.assign({
+      icon, name, meta, ia: false, done: false, result: '',
+      ibg: '#eef7f3', ibd: '#d7efe6', ic: '#0F6E56',
+      right: 'ti-chevron-right', rightColor: '#9ca3af', go: () => {},
+    }, opts);
+    const libItems = [
+      mkLib('ti-headphones', "Oral — série 4", '3 questions · terminée', { done: true, result: '2/3', right: 'ti-circle-check', rightColor: '#0F6E56', go: () => this.go('exercise') }),
+      mkLib('ti-headphones', "Oral — série 5", '3 questions · ~12 min · recommandée', { go: () => this.go('exercise') }),
+      mkLib('ti-abc', 'Structures — série 2', '10 questions · ~15 min', { go: () => this.go('exercise') }),
+      mkLib('ti-book', 'Écrit — série 3', '10 questions · ~20 min', { go: () => this.go('exercise') }),
+      mkLib('ti-pencil', 'Expression écrite — Tâche 2', 'Description de données · notée /24', { ia: true, go: () => this.go('writing') }),
+      mkLib('ti-microphone', 'Expression orale — Tâche 2', 'Point de vue · 2 min de parole', { ia: true, go: () => this.go('speaking') }),
+      mkLib('ti-clipboard-text', 'Simulation complète TCF', 'Conditions réelles · 2 h 47', { ibg: '#fff8ed', ibd: '#f6e2c8', ic: '#c07b33', right: 'ti-lock', rightColor: '#9ca3af', meta: 'Conditions réelles · 2 h 47 · Premium', go: () => this.go('paywall') }),
+    ];
+
+    // expression écrite
+    const wSegs = [
+      { t: "Le graphique montre l'évolution du nombre d'étudiants " },
+      { t: 'inscrit', err: true, fix: 'inscrits', type: "Accord du participe passé" },
+      { t: " à l'université entre 2010 et 2020. On observe une " },
+      { t: 'augmentation important', err: true, fix: 'augmentation importante', type: "Accord de l'adjectif" },
+      { t: " du nombre d'inscriptions. En 2010, il y avait 2 000 étudiants, alors qu'en 2020 " },
+      { t: 'ils sont 3 500', err: true, fix: 'on en compte 3 500', type: 'Tournure / registre écrit' },
+      { t: ". Cette hausse s'explique par les nouvelles filières que l'université a " },
+      { t: 'ouvert', err: true, fix: 'ouvertes', type: 'Accord du participe avec le COD' },
+      { t: '.' },
+    ];
+    const wSegments = wSegs.map((g) => ({ t: g.t, bg: g.err ? '#fdecec' : 'transparent', bb: g.err ? '2px dashed #ef4444' : 'none' }));
+    const wFixes = wSegs.filter((g) => g.err).map((g) => ({ from: g.t, to: g.fix, type: g.type }));
+    const critColor = (n) => (n >= 4 ? '#0F9B80' : '#f59e0b');
+    const mkCrit = (name, score) => ({ name, score, pct: Math.round((score / 6) * 100) + '%', color: critColor(score) });
+    const wCrit = [mkCrit('Respect de la consigne', 5), mkCrit('Cohérence', 4), mkCrit('Lexique', 3), mkCrit('Grammaire', 3)];
+
+    // expression orale
+    const recBars = this.barH.map((h, i) => (s.sPhase === 'rec'
+      ? { h: 8 + ((h * 3 + s.sTime * 11 + i * 7) % 26), bg: '#0F6E56' }
+      : { h: Math.round(h * 0.5), bg: '#d1d5db' }));
+    const sCrit = [mkCrit('Prononciation', 4), mkCrit('Fluidité', 3), mkCrit('Grammaire', 4), mkCrit('Vocabulaire', 4)];
+    const sTips = [
+      'Réduisez les hésitations (« euh ») : préparez des connecteurs — d\u2019abord, ensuite, par exemple, en conclusion.',
+      'Structurez : opinion claire → deux arguments → un exemple concret → conclusion.',
+      'Développez l\u2019argument opposé (« la campagne ») pour montrer la nuance, attendue au niveau B2.',
+    ];
+
+    const resultRows = [
+      { icon: 'ti-headphones', name: 'Compr. de l\u2019oral', score: '~289', seuil: '331', dot: '#f59e0b' },
+      { icon: 'ti-abc', name: 'Structures', score: '~305', seuil: '—', dot: '#0F9B80' },
+      { icon: 'ti-book', name: 'Compr. de l\u2019écrit', score: '~318', seuil: '342', dot: '#f59e0b' },
+    ];
+
+    return {
+      showNav: P.protoNav ?? true,
+      freeLimit: P.freeLimit ?? 2,
+      navSteps,
+      isWelcome: screen === 'welcome', isGoal: screen === 'goal', isDiagIntro: screen === 'diagintro',
+      isDiag: screen === 'diag', isAnalyzing: screen === 'analyzing', isResult: screen === 'result',
+      isExercise: screen === 'exercise', isExDone: screen === 'exdone', isPaywall: screen === 'paywall',
+      isCheckout: screen === 'checkout', isPaid: screen === 'paid',
+      isDashboard: screen === 'dashboard', isLibrary: screen === 'library',
+      isWriting: screen === 'writing', isSpeaking: screen === 'speaking',
+
+      goGoal: () => this.go('goal'), goDiagIntro: () => this.go('diagintro'), startDiag: () => this.go('diag'),
+      goResult: () => this.go('result'), startExercise: () => this.go('exercise'),
+      goPaywall: () => this.go('paywall'), goCheckout: () => this.go('checkout'), goPaid: () => this.go('paid'),
+      goDashboard: () => this.go('dashboard'), goLibrary: () => this.go('library'),
+
+      dashSkills, tabItems, libItems,
+
+      wEdit: s.wPhase === 'edit', wLoading: s.wPhase === 'loading', wDone: s.wPhase === 'done',
+      wSegments, wFixes, wCrit,
+      correctWriting: () => { this.setState({ wPhase: 'loading' }); clearTimeout(this._w); this._w = setTimeout(() => this.setState({ wPhase: 'done' }), 1600); },
+      reviseWriting: () => this.setState({ wPhase: 'edit' }),
+
+      sIdle: s.sPhase === 'idle', sRec: s.sPhase === 'rec', sReview: s.sPhase === 'review',
+      sLoading: s.sPhase === 'loading', sDone: s.sPhase === 'done',
+      sClock: this.fmt(s.sTime), sDur: this.fmt(s.sTime || 47), recBars, sCrit, sTips,
+      startRec: () => this.setState({ sPhase: 'rec', sTime: 0 }),
+      stopRec: () => this.setState({ sPhase: 'review', audioPos: 0, audioPlaying: false }),
+      analyzeRec: () => { this.setState({ sPhase: 'loading', audioPlaying: false }); clearTimeout(this._s); this._s = setTimeout(() => this.setState({ sPhase: 'done' }), 1500); },
+      reRec: () => this.setState({ sPhase: 'idle', sTime: 0 }),
+
+      examOpts, goalOpts, whenOpts, diagParts,
+
+      diagClock: this.fmt(s.diagTime), diagPct: Math.round(((s.diagIdx) / 30) * 100 + 3) + '%',
+      diagNum: s.diagIdx + 1, diagSection: dq.section,
+      diagHasAudio: !!dq.audio, diagHasPassage: !!dq.passage, diagPassage: dq.passage || '',
+      diagQuestion: dq.q, diagOpts,
+
+      bars, audioIcon: s.audioPlaying ? 'ti-player-pause-filled' : 'ti-player-play-filled',
+      audioTime: this.fmt(s.audioPos) + ' / ' + this.fmt(this.AUDIO_LEN),
+      toggleAudio: () => {
+        if (s.audioPos >= this.AUDIO_LEN) this.setState({ audioPos: 0, audioPlaying: true });
+        else this.setState({ audioPlaying: !s.audioPlaying });
+      },
+
+      exClock: this.fmt(s.exTime), exPct: Math.round((s.exIdx / 3) * 100 + 8) + '%',
+      exNum: s.exIdx + 1, exQuestion: eq.q, exOpts, exRevealed: s.exRevealed,
+      exVerdict: exOk ? 'Bonne réponse' : 'Réponse incorrecte',
+      exVerdictIcon: exOk ? 'ti-circle-check' : 'ti-circle-x',
+      exVerdictColor: exOk ? '#0F6E56' : '#b91c1c',
+      exExplain: eq.explain,
+      exNextLabel: s.exIdx >= 2 ? 'Terminer la série' : 'Question suivante',
+      nextEx: () => {
+        const n = s.exIdx + 1;
+        if (n >= 3) this.setState({ screen: 'exdone', audioPlaying: false });
+        else this.setState({ exIdx: n, exSel: null, exRevealed: false, audioPos: 0, audioPlaying: false });
+      },
+      exScoreLabel: s.exScore + '/3',
+
+      planTabs, planPerks, durOpts, payCta: 'Continuer — ' + payAmount + ' F / ' + perLabel,
+      payAmount, planName, durSummary: durLabels[s.dur][1],
+      methodTabs, isCard: s.method === 'card', isMomo: s.method === 'momo', momoNets,
+
+      gauge: this.renderGauge(),
+      resultRows,
+    };
+  }
+
+  renderGauge() {
+    const cx = 105, cy = 96, r = 78;
+    const lvlAngle = (lvl) => Math.PI * (1 - (lvl - 4) / 6);
+    const pt = (a, rad) => [cx + rad * Math.cos(a), cy - rad * Math.sin(a)];
+    const e = React.createElement;
+    const ticks = [];
+    for (let lvl = 4; lvl <= 10; lvl++) {
+      const a = lvlAngle(lvl);
+      const [x1, y1] = pt(a, r - 6), [x2, y2] = pt(a, r + 2);
+      const isTarget = lvl === 7;
+      ticks.push(e('line', { key: 't' + lvl, x1, y1, x2, y2, stroke: isTarget ? '#FFCD00' : 'rgba(255,255,255,.45)', strokeWidth: isTarget ? 3 : 1.5, strokeLinecap: 'round' }));
+      const [lx, ly] = pt(a, r + 13);
+      ticks.push(e('text', { key: 'l' + lvl, x: lx, y: ly + 3, textAnchor: 'middle', fontSize: 9.5, fontFamily: 'JetBrains Mono, monospace', fill: isTarget ? '#FFCD00' : 'rgba(255,255,255,.6)', fontWeight: isTarget ? 700 : 400 }, String(lvl)));
+    }
+    const arc = (from, to, color, w) => {
+      const a1 = lvlAngle(from), a2 = lvlAngle(to);
+      const [x1, y1] = pt(a1, r - 2), [x2, y2] = pt(a2, r - 2);
+      return e('path', { d: 'M ' + x1 + ' ' + y1 + ' A ' + (r - 2) + ' ' + (r - 2) + ' 0 0 1 ' + x2 + ' ' + y2, fill: 'none', stroke: color, strokeWidth: w, strokeLinecap: 'round' });
+    };
+    const na = lvlAngle(6);
+    const [nx, ny] = pt(na, r - 16);
+    return e('svg', { width: 210, height: 112, viewBox: '0 0 210 112' },
+      arc(4, 10, 'rgba(255,255,255,.15)', 5),
+      arc(4, 6, '#7fd4bc', 5),
+      ticks,
+      e('line', { x1: cx, y1: cy, x2: nx, y2: ny, stroke: '#fff', strokeWidth: 2.5, strokeLinecap: 'round' }),
+      e('circle', { cx, cy, r: 5, fill: '#fff' }),
+      e('text', { x: cx, y: cy - 26, textAnchor: 'middle', fontSize: 24, fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', fill: '#fff' }, 'NCLC 6')
+    );
+  }
+}
+</script>
+</body>
+</html>

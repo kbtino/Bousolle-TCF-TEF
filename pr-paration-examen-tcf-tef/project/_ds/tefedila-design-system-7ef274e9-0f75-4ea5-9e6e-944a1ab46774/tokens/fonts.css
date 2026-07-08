@@ -1,0 +1,9 @@
+/* Tefedila webfonts.
+   Sans: the product ships a native system-ui stack by deliberate choice
+   (a civic/utility tool that should feel native on Togolese Android devices).
+   Mono: codes are the hero of the brand. Production uses the platform mono
+   (Courier / monospace). For HTML artifacts we pin JetBrains Mono so the
+   address codes render identically everywhere — a faithful, cleaner stand-in
+   for the system monospace. SUBSTITUTION — see README. */
+
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
